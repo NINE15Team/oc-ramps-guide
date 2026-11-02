@@ -1,23 +1,1573 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="OC Ramps QA theme: store owner and developer guide"><title>OC Ramps QA · site guide</title><link rel="stylesheet" href="style.css"></head>
-<body><a class="skip" href="#main">Skip to guide</a><header class="top"><button class="menu" id="menu" aria-label="Open contents" aria-expanded="false">☰</button><a class="brand" href="#start"><span class="dot"></span> OC Ramps <span class="brand-light">/ QA guide</span></a><div class="top-actions"><a href="https://oc-ramps.myshopify.com/admin" target="_blank" rel="noopener">Shopify Admin ↗</a><button id="print">Print / save PDF</button></div></header>
-<div class="shell"><aside class="sidebar" id="sidebar" aria-label="Guide navigation"><div class="side-inner"><p class="side-label">START HERE</p><a href="#start">Overview</a><a href="#quick">Quick tasks</a><a href="#terms">Plain-English terms</a><p class="side-label">RUN THE STORE</p><a href="#content">Content & pages</a><a href="#products">Products & collections</a><a href="#dynamic">Dynamic content</a><a href="#blogs">Blogs & tags</a><a href="#menus">Menus & theme editor</a><a href="#seo">SEO & media</a><a href="#users">Users & access</a><p class="side-label">TECHNICAL REFERENCE</p><a href="#architecture">Architecture & files</a><a href="#sitemap">Sitemap</a><a href="#integrations">Integrations</a><a href="#deploy">Hosting & deployment</a><a href="#maintenance">Maintenance & backup</a><a href="#troubleshoot">Troubleshooting</a><a href="#future">Future changes</a><a href="#handoff">Handoff & support</a><a href="#sources">Source notes</a></div></aside>
-<main id="main"><section id="start" class="hero"><p class="eyebrow">CLIENT HANDBOOK · QA THEME · 24 SEPTEMBER 2026</p><h1>Keep your site up to date, with confidence.</h1><p class="lead">A practical guide to editing OC Ramps, understanding where content comes from, and knowing when to call a developer.</p><div class="notice"><strong>Start with the right theme.</strong> In Shopify Admin, go to <b>Online Store → Themes</b> and choose <b>Customize</b> on the theme named <b>QA</b>. Before launch, QA may be unpublished; changes to the live theme will not appear in its preview.</div><div class="tip"><strong>Latest QA update.</strong> Pull request #21 removed the old hard-coded Google Tag Manager snippet. The Slide Cart Drawer app is no longer used; QA is set to the native cart page and its saved Slide embed is disabled. Homepage slideshow sections are a separate theme feature.</div><div class="cards"><a href="#quick"><b>Make a routine edit →</b><span>Pages, products, photos and menus</span></a><a href="#dynamic"><b>Understand dynamic content →</b><span>Metafields, shared profiles and tags</span></a><a href="#troubleshoot"><b>Fix a problem →</b><span>Symptoms and first checks</span></a></div></section>
-<section id="quick"><p class="eyebrow">01 / QUICK TASKS</p><h2>Which place should I edit?</h2><div class="table-wrap"><table><thead><tr><th>What you want to change</th><th>Go here in Shopify Admin</th><th>Then check</th></tr></thead><tbody><tr><td>Product title, price, variants, photos</td><td>Products → Products → select product</td><td>Preview product and cart</td></tr><tr><td>Shared product story, FAQs, feature images</td><td>Content → Metaobjects → PDP Profile</td><td>All products using that profile</td></tr><tr><td>One product’s dimensions/specs</td><td>Products → product → Metafields</td><td>Specs on that product</td></tr><tr><td>Homepage banner or section layout</td><td>Online Store → Themes → QA → Customize</td><td>Desktop and mobile</td></tr><tr><td>Article text, image or tags</td><td>Content → Blog posts</td><td>Listing, filter, article</td></tr><tr><td>Menu link</td><td>Content → Menus (or Online Store → Navigation)</td><td>Desktop and mobile navigation</td></tr><tr><td>Standalone page</td><td>Online Store → Pages</td><td>Page template and menu link</td></tr><tr><td>Glossary term</td><td>Content → Metaobjects → Glossary</td><td>Glossary search and category</td></tr></tbody></table></div><div class="tip">Shopify Admin labels can vary by account or Shopify update. Use Admin search if a menu name has moved.</div></section>
-<section id="terms"><p class="eyebrow">02 / WORDS TO KNOW</p><h2>Four building blocks</h2><div class="cards"><div><b>Theme</b><span>The design and code. QA is the theme documented here.</span></div><div><b>Template</b><span>A page recipe, such as Product or Contact. Many pages can share one template.</span></div><div><b>Section / block</b><span>A visible area and its smaller pieces in the Theme Editor.</span></div><div><b>Metafield / metaobject</b><span>An extra field on an item / a reusable record with several fields.</span></div></div><p>Think of the page as <b>template layout + Shopify content + optional extra fields</b>. Changing a shared metaobject can update several pages at once.</p></section>
-<section id="content"><p class="eyebrow">03 / CONTENT MANAGEMENT</p><h2>Pages, posts and media</h2><h3>Add or update a page</h3><ol><li>Open <b>Online Store → Pages</b>; choose a page or click <b>Add page</b>.</li><li>Edit title and body. For a new page, choose the intended <b>Theme template</b> (for example Contact or FAQ). The default page template is simple.</li><li>Set the URL and search listing in <b>Search engine listing</b>. Save.</li><li>If visitors need a menu link, add it under <a href="#menus">Menus</a>. Preview the page in QA on desktop and mobile.</li></ol><h3>Remove or hide content</h3><p>To temporarily hide a page, remove its menu link or unpublish it when Shopify offers that option. To remove a post, use its publish controls first; deletion can break links. Add a URL redirect if an old URL changes.</p><h3>Upload media</h3><ol><li>Use <b>Content → Files</b> for reusable files, or the image picker in a product/article/section.</li><li>Use a clear file name and useful alt text describing the image. Keep images appropriately sized and compressed.</li><li>Replace an image in the content source that owns it; changing an unrelated theme image will not update a product metafield image.</li></ol><h3>Add a blog post</h3><ol><li>Open <b>Content → Blog posts → Add blog post</b>.</li><li>Choose the correct blog, add title, body, featured image, author, excerpt and relevant tags.</li><li>Choose the matching article template if the post needs a special layout. Set SEO title and description, then publish or schedule.</li><li>Open its blog listing and article page to check badges, filters and related content.</li></ol></section>
-<section id="products"><p class="eyebrow">04 / CATALOG</p><h2>Products and collections</h2><ol><li>For a new product, complete title, description, media, pricing, variants, inventory and shipping in <b>Products</b>.</li><li>Assign the right collections. Collection membership can also determine the shared PDP Profile when the product has no own profile.</li><li>Fill product metafields such as <code>custom.pdp_specs</code> and <code>custom.pdp_specs_subheading</code>. Check the product page and cart.</li><li>For a collection, edit its title, description, image, product rules/manual products and SEO. The QA collection template contains hero, filters, grid and optional comparison.</li></ol><div class="warning"><b>Shared copy warning.</b> If a collection has a PDP Profile, changing that record may affect every product inheriting it. Give a product its own profile for a one-off override.</div><p>Collection comparison can use <code>custom.dimensions</code>, then fall back to <code>custom.pdp_specs</code>. The featured article section on article pages can use <code>custom.featured_articles</code> before editor-selected articles.</p></section>
-<section id="dynamic"><p class="eyebrow">05 / DYNAMIC CONTENT</p><h2>How the automatic content works</h2><div class="flow"><span>Product or page in Shopify</span><span>→ metafield points to a record</span><span>→ QA template reads it</span><span>→ visitor sees the result</span></div><h3>Product page: shared PDP Profile</h3><p>The product template’s lower sections read a <b>PDP Profile</b> metaobject. First the theme checks the product’s <code>custom.pdp_profile</code>. If empty, it checks the product’s collections and uses the first collection with a profile. Collection order can matter when several collections have profiles, so assign a product-level profile if the result must be unambiguous.</p><ol><li>Open <b>Content → Metaobjects → PDP Profile</b>. Add or edit an entry. Fill intro, feature blocks, “What’s in the Box,” shipping cards, financing, FAQs and help fields as needed.</li><li>Open <b>Products → Collections → [collection]</b> and assign the record in its <b>PDP profile</b> metafield. For a unique product, assign it under <b>Products → [product] → PDP profile</b>.</li><li>Enter that product’s own <b>Specs</b> and optional specs subheading in product metafields. Specs can be a rich-text list or list entries; use <code>Height|4 ft</code> for a clean label/value row.</li><li>Preview one inheriting product and one overridden product. Empty fields can hide entire sections, including features, specs, financing or FAQ.</li></ol><div class="table-wrap"><table><thead><tr><th>Source</th><th>Fields / effect</th></tr></thead><tbody><tr><td>PDP Profile record</td><td><code>intro_heading</code>, <code>intro_body</code>; <code>feature_1</code> to <code>feature_5</code> heading/body/image; <code>whats_included_items</code>; three shipping cards; financing text; <code>faq_1</code> to <code>faq_5</code> question/answer; optional help fields.</td></tr><tr><td>Product metafields</td><td><code>custom.pdp_specs</code> and <code>custom.pdp_specs_subheading</code> are specific to a product.</td></tr><tr><td>Theme Editor</td><td>Section order, layout, color, fallback images and block field keys. The linked record supplies the copy.</td></tr></tbody></table></div><h3>Other dynamic systems</h3><div class="table-wrap"><table><thead><tr><th>Feature</th><th>Where to edit</th><th>What to verify</th></tr></thead><tbody><tr><td>Skate Glossary</td><td>Content → Metaobjects → Glossary. Enter term, definition, category, pronunciation and optional related terms/pages/products/FAQs.</td><td>Search, category tabs and term detail. Categories are coded to six names; a new category requires development.</td></tr><tr><td>Team rider profiles</td><td>Content → Metaobjects → Team rider; then assign <code>custom.team_rider</code> on the matching page.</td><td>Profile page photo, bio, stats and social links. Empty page association hides profile content.</td></tr><tr><td>Collection FAQs</td><td>Collection metafield <code>custom.collection_faqs</code>.</td><td>Collection FAQ accordion.</td></tr><tr><td>Article recommendations</td><td>Article metafield <code>custom.featured_articles</code>; Theme Editor blocks act as fallback.</td><td>Related article list below the post.</td></tr><tr><td>Shopify recommendations</td><td>Shopify product recommendations / Search & Discovery configuration.</td><td>Related products on product pages.</td></tr></tbody></table></div><p class="small">For the full field map and code owner, see the <a href="https://github.com/NINE15Team/OC-Ramps/blob/QA/docs/pdp-metaobject-content.md">PDP source guide</a>.</p></section>
-<section id="blogs"><p class="eyebrow">06 / BLOG SYSTEMS</p><h2>Tags power hubs, counts and filters</h2><p>The blog areas use two tag styles. Copy tags exactly, including underscores and capitalization. Changing a tag can remove a post from a category or filter.</p><div class="table-wrap"><table><thead><tr><th>Area</th><th>Tag example</th><th>How it works</th></tr></thead><tbody><tr><td>DIY Plans</td><td><code>mini_ramp__plan</code></td><td>Double underscore format. Hub cards link to tagged listings and show live post counts.</td></tr><tr><td>Buyer’s Guides</td><td><code>half_pipe__guide</code></td><td>Double underscore format. Category cards link to tagged posts. Existing Budget tag is spelled <code>budget_fnancing__guide</code>; retain it until links and content are migrated together.</td></tr><tr><td>Skate Library</td><td><code>Flat Ground</code></td><td>Readable tag matching a filter tab. Set article <code>custom.difficulty</code> (Beginner, Intermediate, Advanced) and optional <code>custom.category</code>. Empty category falls back to first tag.</td></tr><tr><td>Stories / Video Drops</td><td><code>Backyard Builds</code></td><td>Readable tag controls filter and badge. Filters apply to posts loaded on that page.</td></tr></tbody></table></div><ol><li>Choose the correct blog before publishing.</li><li>Paste the matching tag from an existing post in the same category.</li><li>For Skate Library, also set Difficulty and optional Category metafields.</li><li>Preview the hub, tagged listing, and article. Confirm the count or filter changed as expected.</li></ol><div class="tip">The Theme Editor sets which Stories filter tags appear. A matching post tag determines whether a filter has results.</div><p>For deeper setup details, consult the repository’s blog content guide and <a href="https://github.com/NINE15Team/OC-Ramps/blob/QA/docs/blog-story-filters.md">Stories filter notes</a>.</p></section>
-<section id="menus"><p class="eyebrow">07 / THEME EDITOR</p><h2>Navigation, sections and widgets</h2><h3>Update navigation</h3><ol><li>Open <b>Content → Menus</b> (some Admin versions say <b>Online Store → Navigation</b>).</li><li>Edit the menu used by the header or footer. Add, reorder, nest or remove links; save.</li><li>Open <b>Online Store → Themes → QA → Customize → Header</b> and verify the intended menu is selected. Check desktop mega menu and mobile drawer.</li></ol><h3>Edit a page layout</h3><ol><li>In the QA Theme Editor, use the page selector at top to choose Home, Product, Collection, Blog or a specific page template.</li><li>Select a section in the left panel. Edit its settings; use blocks for items such as slides, text, buttons and cards. Drag to reorder.</li><li>Preview desktop and mobile; save only after checking links, images and spacing.</li></ol><p>The theme’s homepage uses slides, collection and product lists, content sections and featured blog posts. Product pages use a buy box, profile-driven sections and recommendations. Blog templates use featured stories, post grids and filters. Header, footer, cart page, search, wishlist and comparison are shared components. A native cart drawer exists in code but QA is set to use the cart page.</p><div class="warning"><b>Know the scope.</b> Editing a shared template can change many pages. Duplicate the theme before large layout changes and confirm which template the page uses.</div></section>
-<section id="seo"><p class="eyebrow">08 / SEARCH & MEDIA</p><h2>Simple SEO checklist</h2><ul><li>Write a clear, unique page/product/article title and a useful search description in <b>Search engine listing</b>.</li><li>Use one visible H1 and meaningful subheadings. Put the main topic in natural copy, not repeated keywords.</li><li>Choose short, stable URL handles. When changing an existing URL, create a redirect under <b>Online Store → Navigation → URL redirects</b> or Admin search.</li><li>Add descriptive image alt text; compress large uploads and use appropriate image dimensions.</li><li>Link related pages and products. Check every CTA after an edit.</li><li>Preview social sharing and mobile appearance. Review indexing/analytics in the connected tools.</li></ul><p>The QA theme no longer loads the old hard-coded Google Tag Manager container. Pull request #21 removed it from the theme layout. Tracking, if configured, should be checked in Shopify Admin → Settings → Customer events and the connected analytics apps. The theme repository alone cannot confirm which pixels are active or whether purchase events are reaching a destination. See <a href="https://help.shopify.com/en/manual/promoting-marketing/pixels">Shopify’s pixel guide</a>.</p></section>
-<section id="users"><p class="eyebrow">09 / ACCESS</p><h2>Users and permissions</h2><ol><li>Store owner opens <b>Settings → Users</b> (sometimes <b>Users and permissions</b>).</li><li>To add a person, invite them by email and grant only the permissions needed for their work. A content editor usually needs products, content, files and theme access; finance and app access should be separate.</li><li>To edit access, open their user record and change permissions. To remove access, deactivate/remove the user from that screen after transferring any owned work.</li><li>Review staff and collaborator accounts regularly, especially after a project ends.</li></ol><p>Only the owner should control billing, domains and top-level permissions. Require individual accounts and two-step authentication. Do not share a single admin login or place passwords/API keys in GitHub Pages or this repository.</p></section>
-<section id="architecture"><p class="eyebrow">10 / DEVELOPER REFERENCE</p><h2>How QA is built</h2><p>QA is a Shopify Online Store 2.0 Liquid theme. Shopify hosts the storefront, checkout and catalog. The repository contains Liquid templates, JSON template settings, CSS, JavaScript and locale files. Shopify Admin stores products, pages, posts, menus, metafield definitions and metaobject entries; there is no separate database schema or application server in this repository.</p><div class="flow"><span>Visitor request</span><span>→ Shopify template JSON</span><span>→ Liquid section + blocks</span><span>→ Admin data / metafields</span><span>→ HTML, CSS and JS</span></div><div class="table-wrap"><table><thead><tr><th>Folder</th><th>Purpose</th></tr></thead><tbody><tr><td><code>layout/</code></td><td>Outer HTML shell; the old hard-coded GTM snippet was removed in pull request #21.</td></tr><tr><td><code>templates/</code></td><td>Page recipes and section settings. QA includes home, product, collection, cart, search, blog, article and many page variants.</td></tr><tr><td><code>sections/</code></td><td>Large areas such as header, product info, collection grid, featured posts and glossary.</td></tr><tr><td><code>blocks/</code></td><td>Smaller Theme Editor components inside sections.</td></tr><tr><td><code>snippets/</code></td><td>Reusable Liquid; <code>pdp-profile.liquid</code> resolves shared product data.</td></tr><tr><td><code>assets/</code></td><td>CSS, JavaScript, icons and fonts.</td></tr><tr><td><code>config/</code></td><td>Theme settings schema and saved settings; app embed references.</td></tr><tr><td><code>locales/</code></td><td>Translated UI strings.</td></tr><tr><td><code>tests/</code>, <code>scripts/</code></td><td>Playwright smoke checks and helper scripts.</td></tr></tbody></table></div><p>Theme JSON files can be changed by the Shopify Theme Editor. Before deploying code, pull the latest QA theme so an upload does not overwrite merchant edits.</p></section>
-<section id="sitemap"><p class="eyebrow">11 / PAGE MAP</p><h2>Sitemap of page families</h2><div class="table-wrap"><table><thead><tr><th>Area</th><th>Examples / templates</th></tr></thead><tbody><tr><td>Commerce</td><td>Home (<code>index</code>), collections (<code>collection</code>, <code>collection.compare</code>), products (<code>product</code>), cart, search, gift card, wishlist.</td></tr><tr><td>Learning</td><td>Ramp 101, foundations, buyer guide hub, DIY plans hub, Skate Library hub, glossary, FAQ.</td></tr><tr><td>Stories</td><td>Blog home, DIY Plans, Buyer’s Guides, Skate Library, Video Drops; several article layouts.</td></tr><tr><td>Services</td><td>Custom concrete/wood, rentals, events, installations, skate lessons, contact.</td></tr><tr><td>Brand and media</td><td>About, Why Choose Us, team and rider profiles, customers, galleries, OC Ramps TV.</td></tr><tr><td>System</td><td>404, password, privacy/personal data and app-specific pages.</td></tr></tbody></table></div><p>This is a template-family map from the QA repository, not a full export of live Shopify URLs. The live menu and Shopify XML sitemap are the source for current published URLs. Some templates may be drafts or unused.</p></section>
-<section id="integrations"><p class="eyebrow">12 / CONNECTED SERVICES</p><h2>What the code shows</h2><div class="table-wrap"><table><thead><tr><th>Service</th><th>Observed in QA</th><th>Where to manage</th></tr></thead><tbody><tr><td>Analytics pixels</td><td>Pull request #21 removed the hard-coded GTM container from <code>layout/theme.liquid</code>. No replacement pixel is defined in this theme repository.</td><td>Shopify Admin → Settings → Customer events; check connected analytics apps and their own dashboards.</td></tr><tr><td>Okendo</td><td>Theme app embed, star rating blocks and review widget/metafields.</td><td>Shopify Apps → Okendo; check block after app update.</td></tr><tr><td>Instafeed</td><td>Theme app embed in saved settings.</td><td>Shopify Apps and Theme Editor → App embeds.</td></tr><tr><td>Tidio</td><td>Chat app embed in saved settings.</td><td>Shopify Apps and Theme Editor → App embeds.</td></tr><tr><td>Cart</td><td>QA uses the native cart page (<code>cart_type: page</code>). The old Slide app embed is disabled in saved QA settings.</td><td>Theme settings → Cart; Shopify Apps if Slide is still installed at store level.</td></tr><tr><td>Wishlist</td><td>QA’s header, product button and wishlist page use local theme code. Swym settings remain in the settings schema.</td><td>Theme Editor and <code>/pages/wishlist</code>; confirm Swym store-level use separately.</td></tr><tr><td>Shopify services</td><td>Checkout, Shop Pay, product recommendations, search and store data.</td><td>Shopify Admin settings and relevant apps.</td></tr></tbody></table></div><p>Storefront audit evidence also showed Klaviyo and Theme Scientist scripts, but their current QA configuration and ownership require an Admin review. Swym settings remain in the theme, while the visible wishlist controls use QA’s own wishlist code; confirm whether the Swym app is still needed before changing its store installation. No payment gateway secret or API key is stored in this guide.</p><h3>Changing a key or app setting</h3><ol><li>Find the owning app in <b>Settings → Apps and sales channels</b> or the vendor dashboard.</li><li>Use that service’s secure credential rotation flow. Update the Shopify app connection, custom app credential or theme setting that references it.</li><li>Test on the QA preview, then verify the live integration. Revoke the old key only after the new one works.</li></ol><p>For tracking changes, have the account owner or analytics specialist review Customer events and the connected app configuration, then test the events. Avoid adding a second copy of the same tracking code to the theme.</p></section>
-<section id="deploy"><p class="eyebrow">13 / HOSTING & RELEASES</p><h2>Hosting, deployment and rollback</h2><p>Shopify hosts <a href="https://ocramps.com/">ocramps.com</a> and serves the theme over HTTPS. Server capacity, TLS and checkout infrastructure are managed by Shopify. Domain registration and DNS provider are <b>not verifiable from this repository</b>; the store owner should record them in the private handoff.</p><h3>Safest release path</h3><ol><li>In <b>Online Store → Themes</b>, duplicate the current theme as a recovery point.</li><li>Confirm which theme is named QA and whether it is unpublished. Pull its latest files before code changes so Theme Editor edits are included.</li><li>Make a focused change on the <code>QA</code> Git branch, review the diff, and run relevant theme tests or a manual preview.</li><li>Upload/push to the intended unpublished QA theme. Check home, product, collection, article, cart, search and mobile navigation.</li><li>When approved for launch, publish QA from Shopify Themes. Record the theme ID, date and Git commit in the release log.</li></ol><p>Repository: <a href="https://github.com/NINE15Team/OC-Ramps">NINE15Team/OC-Ramps</a>; branch documented here: <code>QA</code>. Access is granted through the repository owner’s GitHub organization, with named accounts and minimum permissions. This guide cannot grant that access.</p><h3>Restore a previous version</h3><ol><li>For a single recent editor mistake, use Shopify’s theme file version history where available or revert the relevant saved setting.</li><li>For a full theme rollback, publish the duplicated prior theme in <b>Online Store → Themes</b>. Confirm checkout/cart and integrations afterward.</li><li>For code rollback, have a developer revert the Git commit and deploy to the correct theme. Restoring theme code does <b>not</b> restore products, posts, menus or metaobject entries.</li></ol><p>Shopify manages storefront SSL. If a browser reports a certificate issue, check <b>Settings → Domains</b> for connection status and DNS records, then contact Shopify support or the domain registrar. Record the registrar, DNS owner and renewal contact privately.</p></section>
-<section id="maintenance"><p class="eyebrow">14 / ROUTINE CARE</p><h2>Maintenance and backup plan</h2><div class="table-wrap"><table><thead><tr><th>When</th><th>Action</th></tr></thead><tbody><tr><td>Before each meaningful change</td><td>Duplicate the theme; export affected products/content if bulk editing; capture the QA preview URL and expected result.</td></tr><tr><td>Weekly</td><td>Check broken links, forms, cart, key product pages, app widgets, mobile navigation and analytics signals.</td></tr><tr><td>Monthly</td><td>Review staff/app access, image size and performance, theme/app updates, redirects, SEO and backup exports.</td></tr><tr><td>After a deployment</td><td>Check home, a product with a shared profile, collection, blog, search, cart and checkout handoff.</td></tr></tbody></table></div><p>Export products and collections through Shopify’s export tools. Export blog/page/metaobject data with an approved backup app or Shopify Admin/API process. Keep exports in a private, access-controlled location. A theme ZIP/duplicate protects theme code and settings only; it is not a full store backup. Test restoration on an unpublished theme or small sample before relying on it.</p></section>
-<section id="troubleshoot"><p class="eyebrow">15 / FIX IT</p><h2>Symptom → first checks</h2><div class="table-wrap"><table><thead><tr><th>Problem</th><th>Check in this order</th></tr></thead><tbody><tr><td>My edit is missing</td><td>Confirm you edited QA, saved, and previewed QA. Check the item’s assigned template and browser cache.</td></tr><tr><td>Product section is blank</td><td>Check product PDP Profile, then collection PDP Profile, then required record field. Specs require product metafield.</td></tr><tr><td>Wrong copy appears on several products</td><td>They may share one collection profile. Add a product-level override or edit the shared record deliberately.</td></tr><tr><td>Blog post missing from hub/filter</td><td>Check blog, published state, exact tag spelling and current filter settings. A tab with no posts may be disabled.</td></tr><tr><td>Glossary/rider page empty</td><td>Check the metaobject entry and page metafield link; verify Glossary category is one of the supported names.</td></tr><tr><td>Broken link / 404</td><td>Check menu URL and page publish state. Add redirect for changed handles.</td></tr><tr><td>Slow page</td><td>Check oversized images, app scripts, video and recent theme changes. Compare mobile in a private window.</td></tr><tr><td>Cart, review, wishlist or chat fails</td><td>Cart: check QA cart page and theme cart setting. Reviews/chat: check their app embeds. Wishlist: check the theme wishlist page and buttons. Contact the owning app vendor if its service is down.</td></tr><tr><td>SSL/domain error</td><td>Check Shopify Domains status and DNS; escalate to Shopify/registrar.</td></tr></tbody></table></div><p>For developer support, send: page URL, QA or live theme, time, screenshots, device/browser, steps to reproduce and last change. Do not send passwords in a ticket or screenshot.</p></section>
-<section id="future"><p class="eyebrow">16 / GROWTH</p><h2>What can grow easily?</h2><ul><li>Add products, articles and pages using existing templates; use metaobjects for repeatable, structured copy.</li><li>Add a new product family by creating a new PDP Profile and assigning it to a collection. Check each product’s specs.</li><li>Add new blog content using established tag conventions. A new filter/category or glossary category may need template/code changes.</li><li>Ask a developer for new page modules, data types, complex integrations, checkout changes or changes to shared dynamic-content logic.</li><li>Keep performance healthy by limiting app scripts, optimizing media, testing mobile and reviewing metrics after each release.</li><li>Keep security healthy through two-step authentication, least-privilege access, app review and controlled credential rotation.</li></ul></section>
-<section id="handoff"><p class="eyebrow">17 / OWNERSHIP</p><h2>Private handoff checklist</h2><div class="table-wrap"><table><thead><tr><th>Item</th><th>Owner / handoff action</th></tr></thead><tbody><tr><td>Shopify store & QA theme</td><td>Owner grants named staff/collaborator access. Record QA theme ID and live theme ID privately.</td></tr><tr><td>GitHub repository</td><td>Owner grants access to <a href="https://github.com/NINE15Team/OC-Ramps">NINE15Team/OC-Ramps</a>; branch <code>QA</code>.</td></tr><tr><td>App and analytics accounts</td><td>Record owners for Customer events/analytics, Okendo, Swym, Instafeed, Tidio and any live Klaviyo/Theme Scientist configuration. Slide is no longer used by QA.</td></tr><tr><td>Domain and DNS</td><td>Record registrar, DNS provider, renewal owner and Shopify Domains status.</td></tr><tr><td>Credentials</td><td>Share through a password manager with named recipients; rotate temporary access after handoff. Never put secrets in Git, email or this public guide.</td></tr><tr><td>Support escalation</td><td>Merchant content issue → store owner; theme code issue → NINE15/developer; app issue → vendor; hosting/checkout/domain SSL issue → Shopify support and registrar.</td></tr></tbody></table></div><p>Business contact shown on the public store: <b>888-789-6272</b>. The private project handoff should add named technical contacts and response expectations; none are verified in the repository.</p></section>
-<section id="sources"><p class="eyebrow">18 / EVIDENCE & LIMITS</p><h2>How this guide was checked</h2><p>Reviewed the <code>QA</code> branch templates, Liquid, theme settings, existing PDP/blog documentation and the public <a href="https://ocramps.com/">OC Ramps storefront</a> on 24 September 2026. The storefront may still run another theme; QA implementation details are based on the repository. Shopify Admin settings, live theme ID, payment providers, DNS owner, app credentials and current account permissions were not accessible from this workspace and require owner verification.</p><p>Reference layout: <a href="https://peak-achievement-athletics.github.io/VU-bauer-cascade-docs/">VU Customizers knowledge-transfer guide</a> (client-provided protected site). This guide does not copy its password or content.</p></section><footer>OC Ramps · QA theme guide · published on GitHub Pages · last reviewed 24 September 2026</footer></main></div><script src="script.js"></script></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>OC Ramps Theme Docs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Unbounded:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: three-pane docs reader. Sticky top bar, left nav by area, centered article (~70ch), right "On this page" rail. */
+:root {
+  --paper: #fafaf8;
+  --panel: #f1f1ee;
+  --ink: #111114;
+  --muted: #5d5d66;
+  --line: #e2e2dd;
+  --accent: #c4532d;
+  --accent-ink: #a8431f;
+  --accent-soft: #fde8df;
+  --code-bg: #f0f0ec;
+  --mark: #e4ff9e;
+  --note: #e9eef2;  --note-line: #50707f;
+  --tip: #eef7dc;   --tip-line: #4c6b1f;
+  --warn: #fbe7dd;  --warn-line: #a3461f;
+  --shadow: 0 18px 50px rgba(7, 7, 11, .18);
+
+  --font-display: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --top: 58px;
+  --nav-w: 270px;
+  --toc-w: 220px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0b0b0f; --panel: #141419; --ink: #ececef; --muted: #a2a2ab; --line: #26262e;
+    --accent: #f4815d; --accent-ink: #f79c7e; --accent-soft: #2a1912; --code-bg: #17171d; --mark: #4a5a12;
+    --note: #141c21; --note-line: #86a9b8; --tip: #18200e; --tip-line: #baff29; --warn: #26150e; --warn-line: #f4815d;
+    --shadow: 0 18px 50px rgba(0, 0, 0, .5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0b0b0f; --panel: #141419; --ink: #ececef; --muted: #a2a2ab; --line: #26262e;
+  --accent: #f4815d; --accent-ink: #f79c7e; --accent-soft: #2a1912; --code-bg: #17171d; --mark: #4a5a12;
+  --note: #141c21; --note-line: #86a9b8; --tip: #18200e; --tip-line: #baff29; --warn: #26150e; --warn-line: #f4815d;
+  --shadow: 0 18px 50px rgba(0, 0, 0, .5);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-padding-top: calc(var(--top) + 24px); }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 15px/1.65 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+a { color: var(--accent-ink); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+
+/* Top bar */
+.topbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  height: var(--top); display: flex; align-items: center; gap: 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; color: var(--ink); white-space: nowrap; }
+.brand b { font: 700 17px/1 var(--font-display); letter-spacing: .01em; text-transform: uppercase; }
+.brand span { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.menu-btn { display: none; }
+.icon-btn {
+  display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer;
+}
+.search-btn {
+  margin-left: auto; display: flex; align-items: center; gap: 10px;
+  width: min(360px, 100%); height: 36px; padding-inline: 12px;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--muted);
+  font: 14px var(--font-body); cursor: pointer; text-align: left;
+}
+.search-btn:hover { border-color: var(--accent); }
+.search-btn .label { flex: 1; }
+kbd {
+  font: 500 11px/1 var(--font-mono); padding: 3px 6px; border-radius: 4px;
+  border: 1px solid var(--line); background: var(--paper); color: var(--muted);
+}
+
+/* Shell */
+.shell {
+  display: grid; grid-template-columns: var(--nav-w) minmax(0, 1fr) var(--toc-w);
+  max-width: 1440px; margin: 0 auto;
+}
+.sidenav {
+  position: sticky; top: calc(var(--top) + env(safe-area-inset-top, 0px)); align-self: start;
+  height: calc(100vh - var(--top) - env(safe-area-inset-top, 0px)); overflow-y: auto;
+  padding: 24px 12px 40px max(16px, env(safe-area-inset-left, 0px));
+  border-right: 1px solid var(--line);
+}
+.nav-group { margin-bottom: 22px; }
+.nav-group h4 {
+  margin: 0 0 6px; padding-left: 10px;
+  font: 600 11px/1.4 var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+}
+.nav-group a {
+  display: block; padding: 5px 10px; border-radius: 6px;
+  color: var(--ink); text-decoration: none; font-size: 14px; line-height: 1.4;
+}
+.nav-group a:hover { background: var(--panel); }
+.nav-group a[aria-current="page"] { background: var(--accent-soft); color: var(--accent-ink); font-weight: 600; }
+
+main { min-width: 0; padding: 40px clamp(16px, 4vw, 56px) 80px; }
+.doc { max-width: 720px; margin: 0 auto; }
+.doc[hidden] { display: none; }
+
+.crumbs { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 8px; }
+.doc h1 {
+  font: 700 clamp(26px, 3.4vw, 36px)/1.15 var(--font-display); letter-spacing: -.01em; text-transform: uppercase;
+  margin: 0 0 12px; text-wrap: balance;
+}
+.lede { font-size: 17px; color: var(--muted); margin: 0 0 28px; max-width: 62ch; }
+.doc h2 {
+  font: 600 22px/1.3 var(--font-body); letter-spacing: -.01em;
+  margin: 44px 0 10px; padding-top: 18px; border-top: 1px solid var(--line); text-wrap: balance;
+}
+.doc h3 { font: 600 16.5px/1.4 var(--font-body); margin: 28px 0 6px; }
+.doc h2, .doc h3 { position: relative; }
+.doc h2 .anchor, .doc h3 .anchor {
+  margin-left: 8px; opacity: 0; color: var(--muted); text-decoration: none; font-weight: 400;
+}
+.doc h2:hover .anchor, .doc h3:hover .anchor { opacity: 1; }
+.doc p, .doc li { max-width: 68ch; }
+.doc ul, .doc ol { padding-left: 1.3em; }
+.doc li { margin: 4px 0; }
+.doc li::marker { color: var(--accent); }
+.doc strong { font-weight: 600; }
+
+code {
+  font: .86em var(--font-mono); background: var(--code-bg); border: 1px solid var(--line);
+  padding: .08em .38em; border-radius: 4px; overflow-wrap: anywhere;
+}
+.codeblock { position: relative; margin: 16px 0; }
+pre {
+  margin: 0; padding: 16px 18px; overflow-x: auto; border-radius: 10px;
+  background: var(--code-bg); border: 1px solid var(--line);
+  font: 13px/1.6 var(--font-mono);
+}
+pre code { background: none; border: 0; padding: 0; font-size: inherit; overflow-wrap: normal; }
+.copy {
+  position: absolute; top: 8px; right: 8px; padding: 4px 9px; border-radius: 6px;
+  font: 500 11px var(--font-body); color: var(--muted); background: var(--paper);
+  border: 1px solid var(--line); cursor: pointer; opacity: .85;
+}
+.copy:hover { color: var(--ink); opacity: 1; }
+
+.table-wrap { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 10px; }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+th { background: var(--panel); font-weight: 600; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td code { white-space: nowrap; }
+
+.callout {
+  margin: 18px 0; padding: 12px 16px; border-radius: 8px;
+  border-left: 3px solid var(--note-line); background: var(--note);
+}
+.callout > :first-child { margin-top: 0; }
+.callout > :last-child { margin-bottom: 0; }
+.callout .t { display: block; font-weight: 600; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 2px; color: var(--note-line); }
+.callout.tip { border-left-color: var(--tip-line); background: var(--tip); }
+.callout.tip .t { color: var(--tip-line); }
+.callout.warn { border-left-color: var(--warn-line); background: var(--warn); }
+.callout.warn .t { color: var(--warn-line); }
+
+.steps { counter-reset: step; list-style: none; padding-left: 0; }
+.steps > li { counter-increment: step; position: relative; padding-left: 38px; margin: 12px 0; }
+.steps > li::before {
+  content: counter(step); position: absolute; left: 0; top: 1px;
+  width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center;
+  font: 600 12px/1 var(--font-body); background: var(--accent-soft); color: var(--accent-ink);
+  border: 1px solid var(--line);
+}
+.ui { font-weight: 600; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; margin: 20px 0; }
+.cards a {
+  display: block; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px;
+  text-decoration: none; color: var(--ink); background: var(--paper);
+}
+.cards a:hover { border-color: var(--accent); background: var(--panel); }
+.cards a b { display: block; font-size: 14.5px; margin-bottom: 2px; }
+.cards a span { font-size: 13px; color: var(--muted); line-height: 1.5; display: block; }
+
+.pager { display: flex; gap: 12px; margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); }
+.pager a {
+  flex: 1; min-width: 0; padding: 12px 16px; border: 1px solid var(--line); border-radius: 10px;
+  text-decoration: none; color: var(--ink);
+}
+.pager a:hover { border-color: var(--accent); }
+.pager small { display: block; color: var(--muted); font-size: 12px; }
+.pager .next { text-align: right; }
+.pager span { font-weight: 600; }
+
+/* Right rail */
+.toc {
+  position: sticky; top: calc(var(--top) + env(safe-area-inset-top, 0px)); align-self: start;
+  max-height: calc(100vh - var(--top)); overflow-y: auto;
+  padding: 40px max(16px, env(safe-area-inset-right, 0px)) 40px 8px;
+  font-size: 13px;
+}
+.toc h5 { margin: 0 0 10px; font: 600 11px/1.4 var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.toc ul { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--line); }
+.toc li a {
+  display: block; padding: 4px 0 4px 12px; margin-left: -1px; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; line-height: 1.4;
+}
+.toc li.sub a { padding-left: 24px; font-size: 12.5px; }
+.toc li a:hover { color: var(--ink); }
+.toc li a.active { color: var(--accent-ink); border-left-color: var(--accent); font-weight: 600; }
+
+/* Search dialog */
+.search-dialog {
+  width: min(640px, calc(100vw - 32px)); max-height: min(560px, calc(100vh - 80px));
+  padding: 0; border: 1px solid var(--line); border-radius: 14px;
+  background: var(--paper); color: var(--ink); box-shadow: var(--shadow);
+  margin-top: 10vh;
+}
+.search-dialog::backdrop { background: rgba(7, 7, 11, .45); }
+.search-head { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.search-head input {
+  flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink);
+  font: 16px var(--font-body); padding: 6px 0;
+}
+.results { list-style: none; margin: 0; padding: 8px; overflow-y: auto; max-height: calc(min(560px, 100vh - 80px) - 110px); }
+.results li a {
+  display: block; padding: 10px 12px; border-radius: 8px; text-decoration: none; color: var(--ink);
+}
+.results li a .rp { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.results li a .rh { display: block; font-weight: 600; font-size: 14.5px; }
+.results li a .rs { display: block; font-size: 13px; color: var(--muted); line-height: 1.5; margin-top: 2px; }
+.results li a[aria-selected="true"] { background: var(--accent-soft); }
+.results mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 1px; }
+.results .empty { padding: 28px 12px; text-align: center; color: var(--muted); }
+.search-foot { display: flex; gap: 14px; padding: 9px 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+
+@media (max-width: 1180px) {
+  .shell { grid-template-columns: var(--nav-w) minmax(0, 1fr); }
+  .toc { display: none; }
+}
+@media (max-width: 860px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .menu-btn { display: inline-grid; }
+  .brand span { display: none; }
+  .sidenav {
+    position: fixed; z-index: 30; left: 0; top: calc(var(--top) + env(safe-area-inset-top, 0px));
+    width: min(300px, 86vw); height: calc(100vh - var(--top) - env(safe-area-inset-top, 0px));
+    background: var(--paper); box-shadow: var(--shadow); transform: translateX(-105%); transition: transform .2s ease;
+  }
+  body.nav-open .sidenav { transform: none; }
+  main { padding-top: 28px; }
+  .search-btn .label, .search-btn kbd { display: none; }
+  .search-btn { width: 36px; padding: 0; justify-content: center; }
+  .pager { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+/* Password gate */
+.gate { display: none; }
+.locked .topbar, .locked .shell { display: none; }
+.locked .gate {
+  display: grid; place-items: center; min-height: 100vh;
+  padding-block: 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.gate form {
+  width: min(380px, 100%); display: grid; gap: 14px;
+  padding: 32px 28px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel);
+}
+.gate .brand-mark { font: 700 26px/1.1 var(--font-display); text-transform: uppercase; }
+.gate p { margin: 0; color: var(--muted); font-size: 14px; }
+.gate label { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.gate input {
+  width: 100%; height: 44px; padding-inline: 12px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--paper); color: var(--ink); font: 15px var(--font-body);
+}
+.gate input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.gate button {
+  height: 44px; border: 0; border-radius: 8px; cursor: pointer;
+  background: var(--ink); color: var(--paper); font: 600 14px var(--font-body); letter-spacing: .04em;
+}
+.gate .err { color: var(--warn-line); font-size: 13px; min-height: 1.2em; }
+.lock-btn { flex: none; }
+</style>
+
+<script>
+  // Lock the page before anything renders unless this browser already unlocked it.
+  (() => {
+    let ok = false;
+    try { ok = localStorage.getItem('oc-docs-unlocked') === '1' || sessionStorage.getItem('oc-docs-unlocked') === '1'; } catch (_) {}
+    if (!ok) document.documentElement.classList.add('locked');
+  })();
+</script>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <form id="gate-form" novalidate>
+    <div class="brand-mark">OC Ramps</div>
+    <p>Theme documentation. Enter the password to continue.</p>
+    <label for="gate-password">Password</label>
+    <input id="gate-password" type="password" autocomplete="current-password" required>
+    <div class="err" id="gate-error" role="alert"></div>
+    <button type="submit">Unlock</button>
+  </form>
+</div>
+
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Open navigation" aria-expanded="false">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
+  <a class="brand" href="#overview"><b>OC Ramps</b><span>Theme documentation</span></a>
+  <button class="search-btn" id="search-btn" aria-label="Search documentation">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <span class="label">Search docs</span><kbd>⌘K</kbd>
+  </button>
+  <button class="icon-btn lock-btn" id="lock-btn" aria-label="Lock documentation" title="Lock">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+  </button>
+</header>
+
+<div class="shell">
+  <nav class="sidenav" id="sidenav" aria-label="Documentation"></nav>
+
+  <main id="main">
+
+<!-- ============================================================
+     To add a page: copy an <article class="doc">, give it a unique id
+     (letters, digits, - only) and a data-group. The sidebar, search,
+     "On this page" and prev/next are built from these articles.
+     ============================================================ -->
+
+<!-- ======================= START HERE ======================= -->
+
+<article class="doc" id="overview" data-group="Start here">
+  <h1>OC Ramps theme overview</h1>
+  <p class="lede">How the OC Ramps storefront is built, and where to go to change it. Written for the people who run the store day to day and the developers who maintain it.</p>
+
+  <h2>What this site is</h2>
+  <p>OC Ramps sells skate ramp kits, obstacles, surfaces, paint and apparel, and runs custom builds, rentals, events and lessons. The storefront runs on <strong>Shopify</strong> using Shopify's <strong>Horizon</strong> theme, customized by Nine15. Almost every page is built in the Shopify theme editor from sections and blocks, so most content changes need no code.</p>
+
+  <h3>Key features</h3>
+  <ul>
+    <li><strong>Shared product stories.</strong> The lower half of every product page reads a <em>PDP Profile</em> record, so one record can feed many products. See <a href="#pdp-profile">Product page content</a>.</li>
+    <li><strong>Free-shipping card by product.</strong> The free-shipping message only shows on the products picked in theme settings. See <a href="#shipping-claim">Free-shipping claim</a>.</li>
+    <li><strong>Tag-driven blogs.</strong> DIY Plans, Skate Library and the Our Work story library are sorted by exact article tags. See <a href="#blog-tags">How blog tags work</a>.</li>
+    <li><strong>Featured story per tab.</strong> Each Our Work tab has its own hand-picked featured story. See <a href="#stories">Our Work stories</a>.</li>
+    <li><strong>Buyer's Guides hub</strong> with decision cards and a guide sequence, all edited in the theme editor. See <a href="#buyers-guides">Buyer's Guides</a>.</li>
+    <li><strong>Skate Glossary and team rider profiles</strong> powered by metaobjects. See <a href="#glossary-riders">Glossary &amp; rider profiles</a>.</li>
+    <li><strong>Native Shopify cart</strong> with upgrades, recommendations and terms acceptance (no cart app).</li>
+    <li>Apps for reviews (Okendo), email/SMS (Klaviyo), chat (Tidio), cookie consent (Consentmo), session recording (Microsoft Clarity) and more. See <a href="#apps">Apps &amp; integrations</a>.</li>
+  </ul>
+
+  <h2>Technology</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Layer</th><th>What we use</th></tr></thead>
+    <tbody>
+      <tr><td>Platform &amp; hosting</td><td>Shopify (store <code>oc-ramps.myshopify.com</code>, domain <code>ocramps.com</code>). Shopify hosts the site, CDN, SSL and checkout.</td></tr>
+      <tr><td>Theme</td><td>Horizon by Shopify, customized. Online Store 2.0 JSON templates with theme blocks. The live theme is named <strong>OC-Ramps/QA</strong>.</td></tr>
+      <tr><td>Languages</td><td>Liquid (templates), JSON (page layouts and settings), CSS, vanilla JavaScript (web components). No build step.</td></tr>
+      <tr><td>Source control</td><td>GitHub repo <code>NINE15Team/OC-Ramps</code>. The <code>QA</code> branch is connected to the live theme through Shopify's GitHub integration.</td></tr>
+      <tr><td>Fonts</td><td>Shopify font library for body and headings, plus JetBrains Mono for labels and small print.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Where to start</h2>
+  <div class="cards">
+    <a href="#quick-tasks"><b>Which place do I edit?</b><span>A table of common changes and where they live in Shopify Admin.</span></a>
+    <a href="#templates"><b>Template map</b><span>Which template every page type uses, with a live example.</span></a>
+    <a href="#publish-tasks"><b>Publish content</b><span>Step-by-step for guides, tricks, stories and featured stories.</span></a>
+    <a href="#troubleshooting"><b>Troubleshooting</b><span>Common issues and the first things to check.</span></a>
+  </div>
+
+  <div class="callout tip"><span class="t">Tip</span>Press <kbd>⌘K</kbd> (or <kbd>Ctrl K</kbd>, or <kbd>/</kbd>) anywhere to search these docs.</div>
+</article>
+
+<article class="doc" id="quick-tasks" data-group="Start here">
+  <h1>Which place should I edit?</h1>
+  <p class="lede">Most content lives in Shopify Admin. Layout, colours and section order live in the theme editor. Use this table to go straight to the right screen.</p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>What you want to change</th><th>Go here</th><th>Then check</th></tr></thead>
+    <tbody>
+      <tr><td>Product title, price, variants, photos</td><td><span class="ui">Products → [product]</span></td><td>Product page and cart</td></tr>
+      <tr><td>Shared product story, features, FAQs, shipping cards</td><td><span class="ui">Content → Metaobjects → PDP Profile</span></td><td>Every product using that profile</td></tr>
+      <tr><td>One product's specs</td><td><span class="ui">Products → [product] → Metafields</span> (<code>custom.pdp_specs</code>)</td><td>Specs on that product</td></tr>
+      <tr><td>Which products show the free-shipping card</td><td><span class="ui">Online Store → Themes → Customize → Theme settings → Free-shipping claim</span></td><td>An eligible and a non-eligible product</td></tr>
+      <tr><td>Homepage slides and sections</td><td><span class="ui">Online Store → Themes → Customize</span> (Home page)</td><td>Desktop and phone</td></tr>
+      <tr><td>Article text, image or tags</td><td><span class="ui">Content → Blog posts</span></td><td>Hub, listing and article</td></tr>
+      <tr><td>Featured story on Our Work</td><td>Theme editor → <span class="ui">Blogs → gf-story-library → Story library</span></td><td>The matching Our Work tab</td></tr>
+      <tr><td>Menu links</td><td><span class="ui">Content → Menus</span></td><td>Desktop mega menu and phone menu</td></tr>
+      <tr><td>Standalone page</td><td><span class="ui">Online Store → Pages</span></td><td>Its template and menu link</td></tr>
+      <tr><td>Glossary term</td><td><span class="ui">Content → Metaobjects → Glossary</span></td><td>Glossary search and category tab</td></tr>
+      <tr><td>Team rider profile</td><td><span class="ui">Content → Metaobjects → Team rider</span></td><td>The rider's page</td></tr>
+      <tr><td>Redirect an old URL</td><td><span class="ui">Content → Menus → URL redirects</span> (or Admin search "redirects")</td><td>The old URL opens the new page</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><span class="t">Note</span>Shopify sometimes moves menu names (for example <span class="ui">Content → Menus</span> was <span class="ui">Online Store → Navigation</span>). If a screen has moved, use the Admin search bar.</div>
+</article>
+
+<article class="doc" id="terms" data-group="Start here">
+  <h1>Plain-English terms</h1>
+  <p class="lede">A handful of Shopify words come up everywhere. Here is what they mean on this site.</p>
+
+  <h2>The building blocks</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Term</th><th>What it means</th></tr></thead>
+    <tbody>
+      <tr><td>Theme</td><td>The design and code. The live theme is named <strong>OC-Ramps/QA</strong>. Review copies have other names and never affect the live site.</td></tr>
+      <tr><td>Template</td><td>A page recipe, such as Product or Buyer's Guide article. Many pages can share one template. See <a href="#templates">Template map</a>.</td></tr>
+      <tr><td>Section / block</td><td>A visible area of a page, and the smaller pieces inside it, in the theme editor.</td></tr>
+      <tr><td>Metafield</td><td>An extra field on a product, collection, article or page, such as a product's specs.</td></tr>
+      <tr><td>Metaobject</td><td>A reusable record with several fields, such as a PDP Profile, a Glossary term or a Team rider.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Think of every page as <strong>template layout + Shopify content + optional extra fields</strong>. Changing a shared metaobject can update several pages at once.</p>
+
+  <h2>Other words you will see</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Term</th><th>What it means</th></tr></thead>
+    <tbody>
+      <tr><td>PDP</td><td>Product detail page, the page for one product.</td></tr>
+      <tr><td>PDP Profile</td><td>The metaobject that holds the shared story, features, FAQs and shipping cards shown on product pages.</td></tr>
+      <tr><td>Tag</td><td>A label on an article. On this site tags decide which hub, listing or filter an article appears in.</td></tr>
+      <tr><td>App embed</td><td>An app's site-wide script, switched on or off in <span class="ui">Theme editor → App embeds</span>.</td></tr>
+      <tr><td>Hub</td><td>A landing page that links into a blog, such as the DIY Plans hub or the Skate Library hub.</td></tr>
+      <tr><td>Focal point</td><td>The part of a photo Shopify keeps in view when the photo is cropped. Set it by opening the image in Shopify and dragging the focus point.</td></tr>
+      <tr><td>Preview link</td><td>A link that opens a theme that is not live, for review only.</td></tr>
+    </tbody>
+  </table></div>
+</article>
+
+<article class="doc" id="templates" data-group="Start here">
+  <h1>Template map</h1>
+  <p class="lede">Which template each page type uses, and a live page you can open as the current example. When you create a page or article, pick the template from this list.</p>
+
+  <h2>How to assign a template</h2>
+  <ol class="steps">
+    <li>Open the page, article or blog in Shopify Admin (<span class="ui">Online Store → Pages</span>, <span class="ui">Content → Blog posts</span> or <span class="ui">Content → Blog posts → Manage blogs</span>).</li>
+    <li>In the right column, find <span class="ui">Theme template</span> and choose the template from the tables below.</li>
+    <li>Save, then open the page on the store and compare it with the example.</li>
+  </ol>
+
+  <h2>Shop</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Page type</th><th>Template</th><th>Live example</th></tr></thead>
+    <tbody>
+      <tr><td>Homepage</td><td><code>index</code></td><td><a href="https://ocramps.com/" target="_blank" rel="noopener">ocramps.com</a></td></tr>
+      <tr><td>Collection directory</td><td><code>list-collections</code></td><td><a href="https://ocramps.com/collections" target="_blank" rel="noopener">/collections</a></td></tr>
+      <tr><td>Collection grid with filters</td><td><code>collection</code></td><td><a href="https://ocramps.com/collections/halfpipe" target="_blank" rel="noopener">/collections/halfpipe</a></td></tr>
+      <tr><td>Product</td><td><code>product</code></td><td><a href="https://ocramps.com/products/garage-mini-ramp-2-tall-halfpipe" target="_blank" rel="noopener">Garage Mini Ramp</a></td></tr>
+      <tr><td>Cart</td><td><code>cart</code> (native cart)</td><td><a href="https://ocramps.com/cart" target="_blank" rel="noopener">/cart</a></td></tr>
+      <tr><td>Search</td><td><code>search</code></td><td><a href="https://ocramps.com/search?q=ornament" target="_blank" rel="noopener">/search?q=ornament</a></td></tr>
+      <tr><td>Build My Skatepark quiz</td><td><code>page.build-my-skatepark-quiz</code> + RevenueHunt</td><td><a href="https://ocramps.com/pages/build-my-skatepark" target="_blank" rel="noopener">/pages/build-my-skatepark</a></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Learn</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Page type</th><th>Template</th><th>Live example</th></tr></thead>
+    <tbody>
+      <tr><td>Get Started hub</td><td><code>page.where-to-start</code></td><td><a href="https://ocramps.com/pages/first-timer-where-do-i-start" target="_blank" rel="noopener">/pages/first-timer-where-do-i-start</a></td></tr>
+      <tr><td>Buyer's Guides blog (hub + full list)</td><td><code>blog.buyers-guide</code></td><td><a href="https://ocramps.com/blogs/buyers-guides" target="_blank" rel="noopener">/blogs/buyers-guides</a></td></tr>
+      <tr><td>Buyer's Guide article</td><td><code>article.buyers-guide</code></td><td><a href="https://ocramps.com/blogs/buyers-guides/skate-ramp-dimensions" target="_blank" rel="noopener">Skate Ramp Dimensions</a></td></tr>
+      <tr><td>DIY Plans hub</td><td><code>page.DIY-plans-hub</code></td><td><a href="https://ocramps.com/pages/diy-plans-hub" target="_blank" rel="noopener">/pages/diy-plans-hub</a></td></tr>
+      <tr><td>DIY Plans blog (listings)</td><td><code>blog.DIY-plans</code></td><td><a href="https://ocramps.com/blogs/diy-plans" target="_blank" rel="noopener">/blogs/diy-plans</a></td></tr>
+      <tr><td>DIY ramp plan article</td><td><code>article.diy-skate-ramp</code></td><td>No published example yet (plans are hidden until approved)</td></tr>
+      <tr><td>DIY skateboard plan article</td><td><code>article.diy-skateboard</code></td><td>No published example yet</td></tr>
+      <tr><td>Skate Library hub</td><td><code>page.skate-library-hub</code></td><td><a href="https://ocramps.com/pages/skate-library-hub" target="_blank" rel="noopener">/pages/skate-library-hub</a></td></tr>
+      <tr><td>Skate Tricks and Skate Lessons blogs</td><td><code>blog.skate-library</code></td><td><a href="https://ocramps.com/blogs/skate-library" target="_blank" rel="noopener">/blogs/skate-library</a></td></tr>
+      <tr><td>Trick or lesson article</td><td><code>article.skate-learning</code></td><td>Any article in the Skate Library blog</td></tr>
+      <tr><td>Skate Glossary</td><td><code>page.glossary</code></td><td><a href="https://ocramps.com/pages/skate-glossary" target="_blank" rel="noopener">/pages/skate-glossary</a></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Our Work and media</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Page type</th><th>Template</th><th>Live example</th></tr></thead>
+    <tbody>
+      <tr><td>Our Work story library (all tabs)</td><td><code>blog.gf-story-library</code></td><td><a href="https://ocramps.com/blogs/builds-installations" target="_blank" rel="noopener">/blogs/builds-installations</a></td></tr>
+      <tr><td>Story article</td><td><code>article</code></td><td><a href="https://ocramps.com/blogs/builds-installations/active-brea-skates-the-oc-warehouse" target="_blank" rel="noopener">Active Brea skates the OC warehouse</a></td></tr>
+      <tr><td>Media gallery hub</td><td><code>page.media</code></td><td><a href="https://ocramps.com/pages/media-gallery" target="_blank" rel="noopener">/pages/media-gallery</a></td></tr>
+      <tr><td>Photo gallery</td><td><code>page.gallery</code></td><td><a href="https://ocramps.com/pages/concrete-gallery" target="_blank" rel="noopener">/pages/concrete-gallery</a></td></tr>
+      <tr><td>Video gallery (OC Ramps TV)</td><td><code>page.oc-ramps-tv</code></td><td><a href="https://ocramps.com/pages/oc-ramps-tv" target="_blank" rel="noopener">/pages/oc-ramps-tv</a></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Services and company</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Page type</th><th>Template</th><th>Live example</th></tr></thead>
+    <tbody>
+      <tr><td>Custom Builds router</td><td><code>page.custom-oc</code></td><td><a href="https://ocramps.com/pages/custom-skateboard-ramps" target="_blank" rel="noopener">/pages/custom-skateboard-ramps</a></td></tr>
+      <tr><td>Backyard / Public / Business builds</td><td><code>page.backyard-skate-parks</code>, <code>page.public-skate-parks</code>, <code>page.custom-business</code></td><td><a href="https://ocramps.com/pages/backyard-skate-parks" target="_blank" rel="noopener">Backyard</a> · <a href="https://ocramps.com/pages/public-skate-parks" target="_blank" rel="noopener">Public</a> · <a href="https://ocramps.com/pages/business-skateparks" target="_blank" rel="noopener">Business</a></td></tr>
+      <tr><td>Book Now / services router</td><td><code>page.services-experiences</code></td><td><a href="https://ocramps.com/pages/services-experiences" target="_blank" rel="noopener">/pages/services-experiences</a></td></tr>
+      <tr><td>Rentals &amp; brand activations</td><td><code>page.brand-activations</code></td><td><a href="https://ocramps.com/pages/brand-activations" target="_blank" rel="noopener">/pages/brand-activations</a></td></tr>
+      <tr><td>Event venue</td><td><code>page.service-event</code></td><td><a href="https://ocramps.com/pages/event-venue" target="_blank" rel="noopener">/pages/event-venue</a></td></tr>
+      <tr><td>Installations</td><td><code>page.layouthub-61994e6dbbd1fc5686452832</code></td><td><a href="https://ocramps.com/pages/installations" target="_blank" rel="noopener">/pages/installations</a></td></tr>
+      <tr><td>Skate lessons</td><td><code>page.skate-lessons</code></td><td><a href="https://ocramps.com/pages/skate-lessons" target="_blank" rel="noopener">/pages/skate-lessons</a></td></tr>
+      <tr><td>About</td><td><code>page.about-us</code></td><td><a href="https://ocramps.com/pages/about-us" target="_blank" rel="noopener">/pages/about-us</a></td></tr>
+      <tr><td>Why Choose Us</td><td><code>page.why-choose-us</code></td><td><a href="https://ocramps.com/pages/why-choose-us" target="_blank" rel="noopener">/pages/why-choose-us</a></td></tr>
+      <tr><td>Reviews</td><td><code>page.okendo-reviews</code></td><td><a href="https://ocramps.com/pages/reviews" target="_blank" rel="noopener">/pages/reviews</a></td></tr>
+      <tr><td>Team directory</td><td><code>page.oc-ramps-team</code></td><td><a href="https://ocramps.com/pages/oc-ramps-team" target="_blank" rel="noopener">/pages/oc-ramps-team</a></td></tr>
+      <tr><td>Rider profile</td><td><code>page.profile</code></td><td><a href="https://ocramps.com/pages/greg-lutzka" target="_blank" rel="noopener">/pages/greg-lutzka</a></td></tr>
+      <tr><td>Contact</td><td><code>page.contact</code></td><td><a href="https://ocramps.com/pages/contact-us" target="_blank" rel="noopener">/pages/contact-us</a></td></tr>
+      <tr><td>Plain policy or text page</td><td><code>page</code></td><td><a href="https://ocramps.com/pages/terms-conditions" target="_blank" rel="noopener">/pages/terms-conditions</a></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout warn"><span class="t">Do not reuse</span>Templates starting with <code>page.lib-</code> and <code>page.component-library</code> are the design component library. They are kept hidden from search on purpose. Copy sections from them, but never assign them to a public page.</div>
+</article>
+
+<!-- ======================= EDITING THE SITE ======================= -->
+
+<article class="doc" id="theme-editor" data-group="Editing the site">
+  <h1>Using the theme editor</h1>
+  <p class="lede">The theme editor controls layout, section order, colours and most homepage and landing page content.</p>
+
+  <h2>Open the right theme</h2>
+  <ol class="steps">
+    <li>Go to <span class="ui">Online Store → Themes</span>.</li>
+    <li>On the live theme (<strong>OC-Ramps/QA</strong>), click <span class="ui">Customize</span>. To work on a copy first, use <span class="ui">⋯ → Duplicate</span> and customize the copy.</li>
+    <li>Use the page selector at the top to pick Home, Product, Collection, a blog or a specific page template.</li>
+  </ol>
+
+  <h2>Edit a section</h2>
+  <ol class="steps">
+    <li>Select a section in the left panel. Its settings open on the right.</li>
+    <li>Blocks inside it (slides, text, buttons, cards) can be added, reordered by dragging or hidden with the eye icon.</li>
+    <li>Preview desktop and phone with the device icons at the top, then <span class="ui">Save</span>.</li>
+  </ol>
+
+  <h2>Know the scope</h2>
+  <p>Editing a template changes <strong>every</strong> page that uses it. For example, editing the product template changes all product pages. Duplicate the theme before large layout changes, and check which template a page uses in the <a href="#templates">Template map</a>.</p>
+
+  <div class="callout"><span class="t">Settings first</span>Colours come from colour schemes, text sizes come from the theme's type presets (H1–H6, Paragraph), and spacing comes from padding and gap settings. Use those instead of asking for one-off CSS, so future edits keep working in the editor.</div>
+</article>
+
+<article class="doc" id="theme-settings" data-group="Editing the site">
+  <h1>Theme settings</h1>
+  <p class="lede">Site-wide options live in <span class="ui">Theme editor → Theme settings</span> (the gear icon at the bottom left).</p>
+
+  <h2>Settings you are most likely to change</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Group</th><th>What it controls</th></tr></thead>
+    <tbody>
+      <tr><td>Logo and favicon</td><td>Header logo and browser tab icon.</td></tr>
+      <tr><td>Colors</td><td>The colour schemes every section picks from. Changing a scheme updates every section using it.</td></tr>
+      <tr><td>Typography</td><td>Fonts and the size of each type preset on desktop and phone.</td></tr>
+      <tr><td>Cart</td><td>The native cart. It is set to the cart <strong>page</strong>.</td></tr>
+      <tr><td>Free-shipping claim</td><td>Which products show the free-shipping card. See <a href="#shipping-claim">Free-shipping claim</a>.</td></tr>
+      <tr><td>Chat and analytics</td><td>Microsoft Clarity project ID and Tidio chat key. See below.</td></tr>
+      <tr><td>Product cards</td><td>Hover image, quick add and card style for every product grid.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Chat and analytics</h2>
+  <p>Microsoft Clarity and Tidio chat load from the theme, not from their app embeds. They start on the visitor's first mouse move, tap, scroll or key press, so they do not slow down page load.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Setting</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td>Microsoft Clarity project ID (<code>clarity_project_id</code>)</td><td>Clarity session recording. Clarity still follows the visitor's cookie-consent choice. Leave empty to turn Clarity off.</td></tr>
+      <tr><td>Tidio chat public key (<code>tidio_public_key</code>)</td><td>The Tidio chat bubble. Leave empty to turn chat off.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="t">Keep the app embeds off</span>The Clarity and Tidio app embeds are switched off in <span class="ui">App embeds</span> on purpose. Switching them back on loads each script twice and slows the site.</div>
+</article>
+
+<article class="doc" id="homepage" data-group="Editing the site">
+  <h1>Home page</h1>
+  <p class="lede">The homepage is the <code>index</code> template: a hero slideshow, trust bar, Shop by Setup cards, best sellers, story, video, brands, custom builds, reviews, blog posts and newsletter.</p>
+
+  <h2>Hero slideshow</h2>
+  <ul>
+    <li>Each slide has a desktop and a phone image. Upload both so the phone crop looks right.</li>
+    <li>Slides rotate every few seconds. Visitors can pause with the Pause button, and rotation continues after switching browser tabs.</li>
+    <li>The slide's <span class="ui">Media overlay</span> darkens the photo so the text is readable.</li>
+  </ul>
+
+  <h3>Overlay options</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Overlay style</th><th>Use it when</th></tr></thead>
+    <tbody>
+      <tr><td>Solid</td><td>The text sits over a busy photo and needs an even tint.</td></tr>
+      <tr><td>Gradient → Up</td><td>The text sits at the bottom. The bottom is dark and the top of the photo stays clear.</td></tr>
+      <tr><td>Gradient → Left to right</td><td>The text sits on the left. The left is dark and the right of the photo stays clear. On phones, where the text spans the full width, it becomes an even, lighter tint automatically.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout tip"><span class="t">Tip</span>Keep the overlay just strong enough that small text stays readable. Check the slide on a phone before saving.</div>
+
+  <h2>Shop by Setup and best sellers</h2>
+  <p>Shop by Setup cards link to collections and show the starting price of in-stock options only. Best seller cards are real product cards, so names, prices and review counts update on their own.</p>
+
+  <h2>Blog posts</h2>
+  <p>The <span class="ui">Featured blog posts</span> section picks a blog and shows its latest posts. Choose the blog in the section settings.</p>
+</article>
+
+<article class="doc" id="navigation" data-group="Editing the site">
+  <h1>Navigation &amp; mega menu</h1>
+  <p class="lede">Header links come from Shopify menus. The mega menu panels add photos and feature cards from block settings.</p>
+
+  <h2>Update menu links</h2>
+  <ol class="steps">
+    <li>Open <span class="ui">Content → Menus</span> and choose the main menu.</li>
+    <li>Add, rename, nest or reorder links, then save.</li>
+    <li>In the theme editor, open <span class="ui">Header</span> and confirm the right menu is selected.</li>
+    <li>Check the desktop mega menu and the phone menu.</li>
+  </ol>
+
+  <h2>Mega menu cards and photos</h2>
+  <p>Each mega menu panel is a block in the <span class="ui">Header</span> section. Its cards have an image, title, subtitle and link. After you remove a product or collection, check these card links.</p>
+  <div class="callout"><span class="t">Note</span>The menu pre-loads its photos after the page has finished loading, so the menu opens instantly. This does not slow the first screen.</div>
+</article>
+
+<article class="doc" id="header-footer" data-group="Editing the site">
+  <h1>Header &amp; footer</h1>
+  <p class="lede">Both are theme sections in the header and footer groups of the theme editor.</p>
+
+  <h2>Footer</h2>
+  <ul>
+    <li><strong>Menu columns</strong> (Shop, Learn, Services, Company) come from Shopify menus picked in each column's menu block.</li>
+    <li><strong>Social icons</strong> link to Facebook, Instagram and YouTube. Edit the URLs in the social links block.</li>
+    <li><strong>Bottom row</strong> holds the copyright, Privacy, Terms, Shipping &amp; Delivery, Returns, Accessibility and Sitemap links. Each is a text block.</li>
+  </ul>
+  <p>Footer headings, icons and links meet readability (contrast) standards on the dark background, including when hovered.</p>
+
+  <h2>Contact details</h2>
+  <p>The public phone number is <strong>888-789-6272</strong>. It appears on contact, services and product help sections.</p>
+</article>
+
+<article class="doc" id="pages" data-group="Editing the site">
+  <h1>Pages &amp; forms</h1>
+  <p class="lede">Standalone pages live in <span class="ui">Online Store → Pages</span>. Most service pages use a dedicated template with an inquiry form.</p>
+
+  <h2>Add or update a page</h2>
+  <ol class="steps">
+    <li>Open <span class="ui">Online Store → Pages</span>, choose a page or click <span class="ui">Add page</span>.</li>
+    <li>Edit the title and content. For a new page, pick its <span class="ui">Theme template</span> from the <a href="#templates">Template map</a>.</li>
+    <li>Set the URL and description under <span class="ui">Search engine listing</span>, then save.</li>
+    <li>Add a menu link if visitors need one, and check the page on desktop and phone.</li>
+  </ol>
+
+  <h2>Inquiry forms</h2>
+  <p>Brand activations, event venue, installations, skate lessons and contact pages have inquiry forms. After sending, the form shows a clear "sent" or "error" message, and the send button cannot be pressed twice. Submissions arrive at the store's contact email.</p>
+
+  <h2>Contact page Instagram feed</h2>
+  <p>The Contact page shows the Instafeed Instagram feed. Its script only loads on pages that contain the feed, so it does not slow other pages.</p>
+
+  <h2>Remove or hide content</h2>
+  <p>To hide a page temporarily, remove its menu link or set it to hidden. Before deleting, add a URL redirect so old links still work.</p>
+</article>
+
+<!-- ======================= CATALOG ======================= -->
+
+<article class="doc" id="products" data-group="Catalog">
+  <h1>How products are set up</h1>
+  <p class="lede">The top of a product page (photos, price, options, Add to cart) comes from the product itself. The lower half comes from a shared PDP Profile.</p>
+
+  <h2>Add a product</h2>
+  <ol class="steps">
+    <li>In <span class="ui">Products → Add product</span>, fill in title, description, photos, price, variants, inventory and shipping weight.</li>
+    <li>Add it to the right collections. A collection can supply the product's PDP Profile.</li>
+    <li>Fill the product metafields: <code>custom.pdp_specs</code> and, if needed, <code>custom.pdp_specs_subheading</code>.</li>
+    <li>If it should show the free-shipping card, add it to <a href="#shipping-claim">Free-shipping claim</a>.</li>
+    <li>Preview the product and add it to the cart.</li>
+  </ol>
+
+  <h2>Product metafields</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Metafield</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><code>custom.pdp_profile</code></td><td>Links this product to a PDP Profile. Overrides the collection's profile.</td></tr>
+      <tr><td><code>custom.pdp_specs</code></td><td>The Specs list. Use one line per row in the form <code>Height|4 ft</code>.</td></tr>
+      <tr><td><code>custom.pdp_specs_subheading</code></td><td>Optional line under the Specs heading.</td></tr>
+      <tr><td><code>custom.dimensions</code></td><td>Dimensions used by product comparison.</td></tr>
+      <tr><td><code>custom.recommendation_heading</code></td><td>Optional heading over related products.</td></tr>
+      <tr><td><code>reviews.rating</code>, <code>reviews.rating_count</code></td><td>Filled by Okendo. Do not edit by hand.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Product options</h2>
+  <p>Ramp options (width, surface, paint) are native Shopify variants and options, styled as buttons. The price, photos and shared product link follow the selected option.</p>
+
+  <h2>Product photos</h2>
+  <p>Upload photos at least 1600 px wide, ideally square on a white background. Photos smaller than the space they fill look blurry.</p>
+
+  <h2>Shipping outside the lower 48</h2>
+  <p>Ramp products (types Halfpipe, Quarter Pipe, Combo, Kicker, Bump, Road Series, Signature Series) automatically show a line asking shoppers outside the 48 contiguous states to contact OC Ramps for a quote. It is driven by the product <strong>type</strong>, so set the type correctly.</p>
+</article>
+
+<article class="doc" id="pdp-profile" data-group="Catalog">
+  <h1>Product page content (PDP Profile)</h1>
+  <p class="lede">The lower half of every product page reads a PDP Profile record. One record can feed a whole family of products.</p>
+
+  <h2>Which profile a product uses</h2>
+  <ol class="steps">
+    <li>The product's own <code>custom.pdp_profile</code>, if set.</li>
+    <li>Otherwise, the first of the product's collections that has a <code>custom.pdp_profile</code>.</li>
+    <li>Otherwise none, and the profile sections hide.</li>
+  </ol>
+  <div class="callout warn"><span class="t">Shared copy</span>Editing a profile changes every product that uses it. For a one-off change, create a new profile and link it on that product only.</div>
+
+  <h2>Edit a profile</h2>
+  <ol class="steps">
+    <li>Open <span class="ui">Content → Metaobjects → PDP Profile</span> and choose the entry.</li>
+    <li>Fill or edit the fields below and save.</li>
+    <li>Preview one product that uses the profile. Empty fields hide their section, so blanks are safe.</li>
+  </ol>
+
+  <h2>Profile fields</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Field (native name)</th><th>Shows as</th></tr></thead>
+    <tbody>
+      <tr><td><code>intro_heading</code>, <code>intro_body</code></td><td>Introduction under the buy box.</td></tr>
+      <tr><td><code>feature_1_heading</code> … <code>feature_5_heading</code>, with matching <code>_body</code> and <code>_image</code></td><td>Up to five feature rows. A row hides unless heading, body and image are all filled.</td></tr>
+      <tr><td><code>whats_included_items</code>, <code>whats_included_subheading</code></td><td>"What's in the Box" list.</td></tr>
+      <tr><td><code>shipping_card_1_title</code>, <code>shipping_card_1_body</code></td><td>Shipping card. See <a href="#shipping-claim">Free-shipping claim</a>.</td></tr>
+      <tr><td><code>shipping_card_2_title</code>, <code>shipping_card_2_body</code></td><td>Delivery card.</td></tr>
+      <tr><td><code>shipping_card_3_title</code>, <code>shipping_card_3_body</code></td><td>Assembly or help card.</td></tr>
+      <tr><td><code>financing_eyebrow</code>, <code>financing_heading</code>, <code>financing_body</code>, <code>financing_price_3mo</code>, <code>financing_price_6mo</code>, <code>financing_price_12mo</code></td><td>Pay over time section.</td></tr>
+      <tr><td><code>faq_subtitle</code>, <code>faq_1_question</code> / <code>faq_1_answer</code> … <code>faq_6_question</code> / <code>faq_6_answer</code></td><td>Up to six FAQs.</td></tr>
+      <tr><td><code>need_help_heading</code>, <code>need_help_subheading</code></td><td>"Need help" section at the bottom.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><span class="t">Note</span>Skate Paint products show a built-in "No ramp assembly" card in place of an assembly card, so you do not need to fill one for paint.</div>
+</article>
+
+<article class="doc" id="shipping-claim" data-group="Catalog">
+  <h1>Free-shipping claim</h1>
+  <p class="lede">The free-shipping card on product pages only shows on products picked as eligible. Every other product hides it and keeps its other shipping cards.</p>
+
+  <h2>How it works</h2>
+  <ul>
+    <li>The list lives in <span class="ui">Theme settings → Free-shipping claim → Products eligible for free shipping</span> (up to 50 products).</li>
+    <li>On a product <strong>in</strong> the list, the Shipping card shows as written in its PDP Profile.</li>
+    <li>On a product <strong>not</strong> in the list, the Shipping card hides if it mentions free shipping. Cards that say something else (for example "Confirm surface-sheet shipping") still show.</li>
+    <li>If the free-shipping card was the only card, the whole Shipping section hides, so there is never an empty box.</li>
+    <li>Leaving the list empty shows the card on every product.</li>
+  </ul>
+
+  <h2>Add or remove an eligible product</h2>
+  <ol class="steps">
+    <li>Open the theme editor, then <span class="ui">Theme settings → Free-shipping claim</span>.</li>
+    <li>Click <span class="ui">Select products</span>, tick or untick the product, then save.</li>
+    <li>Open the product page and check the Shipping card.</li>
+  </ol>
+
+  <div class="callout"><span class="t">Current list</span>The list holds the 32 full-size ramps from the approved eligibility map (October 2026). Surface sheets (GatorSkins, Skatelite), paint, apparel, fingerboards, rails, accessories and the gift card are not eligible.</div>
+  <div class="callout tip"><span class="t">Wording</span>The card's wording comes from <code>shipping_card_1_title</code> and <code>shipping_card_1_body</code> in each product's PDP Profile. Change the words there, not in the theme.</div>
+</article>
+
+<article class="doc" id="collections" data-group="Catalog">
+  <h1>Collection pages</h1>
+  <p class="lede">Collections use the <code>collection</code> template: a hero, filters and sorting, the product grid and optional FAQs.</p>
+
+  <h2>Edit a collection</h2>
+  <ol class="steps">
+    <li>Open <span class="ui">Products → Collections → [collection]</span>.</li>
+    <li>Edit title, description, image, products (manual or by conditions) and search listing.</li>
+    <li>Fill metafields if needed (below), save and preview.</li>
+  </ol>
+
+  <h2>Collection metafields</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Metafield</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><code>custom.pdp_profile</code></td><td>Default PDP Profile for products in this collection.</td></tr>
+      <tr><td><code>custom.collection_faqs</code></td><td>FAQ accordion on the collection page. Empty hides it.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Product cards</h2>
+  <p>Product card photos sit in a square frame. The <span class="ui">Image fit</span> setting on the product card image block (collection template) controls how photos fill it:</p>
+  <ul>
+    <li><strong>Fit whole image</strong> (current setting on collections): the full product photo always shows, with white space if the photo is not square.</li>
+    <li><strong>Fill</strong>: the photo fills the frame and edges may be trimmed.</li>
+  </ul>
+
+  <h2>Collection hero images</h2>
+  <p>Each main collection has its own hero image and crop in the collection template. Check desktop and phone after changing one.</p>
+</article>
+
+<!-- ======================= BLOGS & CONTENT ======================= -->
+
+<article class="doc" id="blog-tags" data-group="Blogs &amp; content">
+  <h1>How blog tags work</h1>
+  <p class="lede">Article tags decide which hub, listing, filter or badge an article appears in. Get the tag right and everything else fills itself.</p>
+
+  <h2>The one rule that matters most</h2>
+  <div class="callout warn"><span class="t">Tags are exact-match</span>The site looks for the tag character for character. A wrong letter, a space instead of an underscore, the wrong capital or a trailing space means the article publishes but does not appear where you expect. There is no warning.</div>
+  <p>When something does not show up, check the tag first. Copy tags from the tables in these docs, or from an existing article in the same category.</p>
+
+  <h2>The tag styles</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Area</th><th>Tag style</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>DIY Plans</td><td>Lowercase, double underscore before <code>plan</code></td><td><code>mini_ramp__plan</code></td></tr>
+      <tr><td>Skate Library</td><td>Readable tag matching a filter tab</td><td><code>Flat Ground</code></td></tr>
+      <tr><td>Our Work stories</td><td>Prefixed tags for story type and project type</td><td><code>_story_type__Builds</code>, <code>_our_work__Home &amp; Private Builds</code></td></tr>
+      <tr><td>Buyer's Guides</td><td>No tags needed. The hub is edited in the theme editor.</td><td>See <a href="#buyers-guides">Buyer's Guides</a></td></tr>
+    </tbody>
+  </table></div>
+</article>
+
+<article class="doc" id="diy-plans" data-group="Blogs &amp; content">
+  <h1>DIY Plans</h1>
+  <p class="lede">The DIY Plans hub shows six category cards with live article counts. Each card opens a listing of articles with that tag.</p>
+
+  <h2>Pages involved</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Page</th><th>Template</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://ocramps.com/pages/diy-plans-hub" target="_blank" rel="noopener">DIY Plans hub</a></td><td><code>page.DIY-plans-hub</code></td><td>Six category cards with live counts</td></tr>
+      <tr><td>DIY Plans blog</td><td><code>blog.DIY-plans</code></td><td>Tagged listings, for example <code>/blogs/diy-plans/tagged/mini_ramp__plan</code></td></tr>
+      <tr><td>Plan article</td><td><code>article.diy-skate-ramp</code> or <code>article.diy-skateboard</code></td><td>The plan itself</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>The six category tags</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Tag to type</th><th>Card it counts toward</th></tr></thead>
+    <tbody>
+      <tr><td><code>mini_ramp__plan</code></td><td>Mini Ramp Plans</td></tr>
+      <tr><td><code>quarter_pipe__plan</code></td><td>Quarter Pipe Plans</td></tr>
+      <tr><td><code>skate_rail__plan</code></td><td>Skate Rail Plans</td></tr>
+      <tr><td><code>box_ledge__plan</code></td><td>Box / Ledge Plans</td></tr>
+      <tr><td><code>bank_launch_transfer__plan</code></td><td>Bank / Launch / Transfer Plans</td></tr>
+      <tr><td><code>custom_deck__plan</code></td><td>Custom Deck Plans</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>How the counter works</h2>
+  <p>Each card counts every <strong>published</strong> DIY Plans article with its exact tag. Nothing to update by hand. After publishing, reload the hub and check the number went up. That is your proof the tag is right.</p>
+  <div class="callout"><span class="t">Current state</span>DIY plan articles are hidden until their construction and media review is approved, so counts and listings are empty for now. They fill in as soon as tagged plans are published.</div>
+</article>
+
+<article class="doc" id="buyers-guides" data-group="Blogs &amp; content">
+  <h1>Buyer's Guides</h1>
+  <p class="lede">The Buyer's Guides blog page is a hub: decision cards, a recommended reading order and the full list of guides. The cards are edited in the theme editor. No tags are needed.</p>
+
+  <h2>Pages involved</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Page</th><th>Template</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://ocramps.com/blogs/buyers-guides" target="_blank" rel="noopener">Buyer's Guides hub and list</a></td><td><code>blog.buyers-guide</code></td></tr>
+      <tr><td><a href="https://ocramps.com/blogs/buyers-guides/skate-ramp-dimensions" target="_blank" rel="noopener">Guide article</a></td><td><code>article.buyers-guide</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Edit the hub cards</h2>
+  <ol class="steps">
+    <li>Theme editor → page selector → <span class="ui">Blogs → buyers-guide</span>.</li>
+    <li>Open the <span class="ui">Buyer guide hub</span> section. It has a hero, <strong>Decision</strong> blocks ("Choose your start") and <strong>Guide</strong> blocks (the reading sequence).</li>
+    <li>Each block has a title, description, <span class="ui">Final article destination</span> and an optional <span class="ui">Published page while article is hidden</span>. If the final article is not published yet, the card links to the fallback page instead, so it never leads to a missing page.</li>
+  </ol>
+
+  <h2>The full guide list</h2>
+  <p>The list below the hub shows every published article in the Buyer's Guides blog, four per page, newest first. Publishing a guide adds it automatically.</p>
+
+  <h2>Write a guide article</h2>
+  <ol class="steps">
+    <li><span class="ui">Content → Blog posts → Add blog post</span>, blog <strong>Buyer's Guides</strong>, template <code>article.buyers-guide</code>.</li>
+    <li>Add the title, featured image, excerpt and body. The first photo in the body loads straight away; later photos load as the reader scrolls.</li>
+    <li>For FAQs inside the article, use the FAQ pattern below. The theme turns it into an accessible accordion.</li>
+  </ol>
+  <div class="codeblock"><pre><code>&lt;details class="oc-guide-faq"&gt;&lt;summary class="oc-guide-question"&gt;Your question?&lt;span aria-hidden="true" class="oc-guide-faq-icon"&gt;+&lt;/span&gt;&lt;/summary&gt;&lt;div class="oc-guide-answer"&gt;&lt;p&gt;Your answer.&lt;/p&gt;&lt;/div&gt;&lt;/details&gt;</code></pre></div>
+  <p>Paste this in the article editor's <span class="ui">Show HTML</span> view, then replace the question and answer text.</p>
+</article>
+
+<article class="doc" id="skate-library" data-group="Blogs &amp; content">
+  <h1>Skate Library</h1>
+  <p class="lede">The Skate Library hub links into the Skate Tricks and Skate Lessons blogs. Trick listings have filter tabs and show each trick's difficulty and category.</p>
+
+  <h2>Pages involved</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Page</th><th>Template</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://ocramps.com/pages/skate-library-hub" target="_blank" rel="noopener">Skate Library hub</a></td><td><code>page.skate-library-hub</code></td></tr>
+      <tr><td><a href="https://ocramps.com/blogs/skate-library" target="_blank" rel="noopener">Skate Tricks</a> and <a href="https://ocramps.com/blogs/skate-lessons" target="_blank" rel="noopener">Skate Lessons</a></td><td><code>blog.skate-library</code></td></tr>
+      <tr><td>Trick or lesson article</td><td><code>article.skate-learning</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Listings show 10 articles per page, newest first, with page links at the bottom. Change the number in the <span class="ui">Trick browse</span> section's <span class="ui">Articles per page</span> setting (theme editor → <span class="ui">Blogs → skate-library</span>). The Buyer's Guides list shows 4 per page.</p>
+
+  <h2>Filter tabs</h2>
+  <p>The tabs are <strong>All</strong>, <code>Flat Ground</code>, <code>Transition</code>, <code>Grinds</code>, <code>Manuals</code> and <code>Airs</code>. An article appears under a tab when it has that exact tag (capitals and spaces matter). Tabs are blocks in the <span class="ui">Trick browse</span> section of the <code>blog.skate-library</code> template. To add a tab, add a block there, then tag articles with its exact label.</p>
+
+  <h2>Article metafields</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Metafield</th><th>Values</th><th>Shows as</th></tr></thead>
+    <tbody>
+      <tr><td><code>custom.difficulty_metafield</code></td><td>Beginner, Intermediate or Advanced</td><td>Difficulty on the trick card</td></tr>
+      <tr><td><code>custom.category_metafield</code></td><td>For example Flat Ground</td><td>Category on the trick card. Empty falls back to the first tag.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><span class="t">Field names</span>The live Skate Library reads <code>custom.difficulty_metafield</code> and <code>custom.category_metafield</code>. Older notes mention <code>custom.difficulty</code> and <code>custom.category</code>; those are not used on the live blog.</div>
+</article>
+
+<article class="doc" id="stories" data-group="Blogs &amp; content">
+  <h1>Our Work stories</h1>
+  <p class="lede">The Our Work story library (<code>/blogs/builds-installations</code>) has story-type tabs, project-type links, a featured story per tab and a paged grid of story cards.</p>
+
+  <h2>Story-type tags</h2>
+  <p>Add one of these tags so the story appears under its tab and shows its badge:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Tab</th><th>Tag to type</th></tr></thead>
+    <tbody>
+      <tr><td>Builds</td><td><code>_story_type__Builds</code></td></tr>
+      <tr><td>Events</td><td><code>_story_type__Events</code></td></tr>
+      <tr><td>Product Drops</td><td><code>_story_type__Product Drops</code></td></tr>
+      <tr><td>Videos</td><td><code>_story_type__Videos</code></td></tr>
+      <tr><td>Skate Stories</td><td><code>_story_type__Skate Stories</code> (or <code>_our_work__Skate Stories &amp; Guides</code>)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Project-type tags</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Project link</th><th>Tag to type</th></tr></thead>
+    <tbody>
+      <tr><td>Home &amp; Private</td><td><code>_our_work__Home &amp; Private Builds</code></td></tr>
+      <tr><td>Public &amp; Community</td><td><code>_our_work__Public &amp; Community Projects</code></td></tr>
+      <tr><td>Business</td><td><code>_our_work__Business Skateparks</code></td></tr>
+      <tr><td>Rentals &amp; Activations</td><td><code>_our_work__Rentals &amp; Brand Activations</code></td></tr>
+    </tbody>
+  </table></div>
+  <p>A build story usually has a story-type tag <strong>and</strong> a project-type tag, for example <code>_story_type__Builds</code> + <code>_our_work__Public &amp; Community Projects</code>.</p>
+
+  <h2>Choose the featured story</h2>
+  <p>Every tab and project link has its own featured story, shown above the grid on the first page.</p>
+  <ol class="steps">
+    <li>Theme editor → page selector → <span class="ui">Blogs → gf-story-library</span>.</li>
+    <li>Open the <span class="ui">Story library</span> section.</li>
+    <li>Find the tab's pair of settings, for example <span class="ui">Builds feature</span> (pick an article) and <span class="ui">Builds introduction</span> (one or two sentences shown on the feature).</li>
+    <li>Save, then open that tab on the store to check.</li>
+  </ol>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Setting pair</th><th>Shows on</th></tr></thead>
+    <tbody>
+      <tr><td>All Stories feature / introduction</td><td>The default view, no tab selected</td></tr>
+      <tr><td>Builds, Events, Product Drops, Videos, Skate Stories</td><td>The matching story-type tab</td></tr>
+      <tr><td>Home and Private, Public and Community, Business, Rentals and Activations</td><td>The matching project link</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="t">The feature must match the tab</span>A featured story only shows if it is in the Our Work blog and carries the tab's tag. If you pick a story without that tag, the feature quietly hides. Add the tag to the article, or pick another story.</div>
+  <div class="callout tip"><span class="t">Photo crop</span>Story cards crop photos to a wide frame. For tall photos with people, set the image's focal point in Shopify (open the image and drag the focus point onto the faces) so faces are not cut off.</div>
+</article>
+
+<article class="doc" id="glossary-riders" data-group="Blogs &amp; content">
+  <h1>Glossary &amp; rider profiles</h1>
+  <p class="lede">The Skate Glossary and team rider pages are powered by metaobjects, so new entries need no code.</p>
+
+  <h2>Skate Glossary</h2>
+  <ol class="steps">
+    <li>Open <span class="ui">Content → Metaobjects → Glossary</span> and click <span class="ui">Add entry</span>.</li>
+    <li>Fill the fields below and save. The term appears on the <a href="https://ocramps.com/pages/skate-glossary" target="_blank" rel="noopener">Skate Glossary</a> automatically.</li>
+  </ol>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Field</th><th>What it is</th></tr></thead>
+    <tbody>
+      <tr><td><code>term</code></td><td>The word or phrase.</td></tr>
+      <tr><td><code>definition</code></td><td>The explanation.</td></tr>
+      <tr><td><code>category</code></td><td>Must match one of the existing category tabs exactly. A new category needs a developer.</td></tr>
+      <tr><td><code>pronunciation</code></td><td>Optional.</td></tr>
+      <tr><td><code>related_terms</code>, <code>related_pages</code>, <code>related_products</code></td><td>Optional links shown with the term.</td></tr>
+      <tr><td><code>faq_questions</code>, <code>faq_answers</code></td><td>Optional FAQs for the term.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Team rider profiles</h2>
+  <ol class="steps">
+    <li>Open <span class="ui">Content → Metaobjects → Team rider</span> and add or edit the rider.</li>
+    <li>Open the rider's page in <span class="ui">Online Store → Pages</span> (template <code>page.profile</code>) and link the rider in its <code>custom.team_rider</code> metafield.</li>
+    <li>Preview the page.</li>
+  </ol>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Field</th><th>Shows as</th></tr></thead>
+    <tbody>
+      <tr><td><code>name</code>, <code>role_label</code>, <code>location</code>, <code>specialty</code></td><td>Profile header.</td></tr>
+      <tr><td><code>photo</code></td><td>Profile photo. Upload at least 1000 px wide so it stays sharp.</td></tr>
+      <tr><td><code>bio</code></td><td>Biography.</td></tr>
+      <tr><td><code>stat_1_label</code> / <code>stat_1_value</code> … <code>stat_4_label</code> / <code>stat_4_value</code></td><td>Up to four stats.</td></tr>
+      <tr><td><code>signature_product</code></td><td>The rider's signature product card.</td></tr>
+      <tr><td><code>instagram_url</code>, <code>youtube_url</code></td><td>Social links.</td></tr>
+    </tbody>
+  </table></div>
+</article>
+
+<article class="doc" id="publish-tasks" data-group="Blogs &amp; content">
+  <h1>Everyday publishing tasks</h1>
+  <p class="lede">Step-by-step for the most common content jobs.</p>
+
+  <h2>Publish a Buyer's Guide</h2>
+  <ol class="steps">
+    <li><span class="ui">Content → Blog posts → Add blog post</span>. Blog: <strong>Buyer's Guides</strong>. Template: <code>article.buyers-guide</code>.</li>
+    <li>Add title, body, featured image, excerpt and search listing. Publish.</li>
+    <li>If a hub card should point to it, set that card's <span class="ui">Final article destination</span> in the theme editor.</li>
+  </ol>
+
+  <h2>Publish a trick or lesson</h2>
+  <ol class="steps">
+    <li>Add a blog post to <strong>Skate Library</strong> (or <strong>Skate Lessons</strong>). Template: <code>article.skate-learning</code>.</li>
+    <li>Add one tab tag, for example <code>Grinds</code>.</li>
+    <li>Set <code>custom.difficulty_metafield</code> and, optionally, <code>custom.category_metafield</code> in the article's metafields.</li>
+    <li>Publish and check the tab.</li>
+  </ol>
+
+  <h2>Publish an Our Work story</h2>
+  <ol class="steps">
+    <li>Add a blog post to <strong>Builds &amp; Installations</strong> (Our Work). Template: <code>article</code>.</li>
+    <li>Add a story-type tag and, for builds, a project-type tag. See <a href="#stories">Our Work stories</a>.</li>
+    <li>Add a featured image. Set its focal point if it is a tall photo.</li>
+    <li>Publish and check the tab.</li>
+  </ol>
+
+  <h2>Publish a DIY plan</h2>
+  <ol class="steps">
+    <li>Add a blog post to <strong>DIY Plans</strong>. Template: <code>article.diy-skate-ramp</code> (or <code>article.diy-skateboard</code>).</li>
+    <li>Add one category tag, for example <code>mini_ramp__plan</code>.</li>
+    <li>Publish, then check the DIY Plans hub count went up.</li>
+  </ol>
+
+  <h2>Change a featured story</h2>
+  <p>See <a href="#stories.choose-the-featured-story">Choose the featured story</a>.</p>
+
+  <h2>Move an article to another category</h2>
+  <p>Replace its category tag with the new one, save, and check both the old and the new listing.</p>
+</article>
+
+<!-- ======================= APPS ======================= -->
+
+<article class="doc" id="apps" data-group="Apps &amp; integrations">
+  <h1>Apps &amp; integrations</h1>
+  <p class="lede">What each connected service does on the storefront and where it is managed.</p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Service</th><th>What it does</th><th>Where to manage</th></tr></thead>
+    <tbody>
+      <tr><td>Okendo</td><td>Product reviews, star ratings and the Reviews page.</td><td>Okendo app; star rating blocks in the product template.</td></tr>
+      <tr><td>Klaviyo</td><td>Email/SMS sign-up forms and tracking.</td><td>Klaviyo app and dashboard.</td></tr>
+      <tr><td>Consentmo</td><td>Cookie consent banner. Clarity follows its choices.</td><td>Consentmo app.</td></tr>
+      <tr><td>Tidio</td><td>Chat bubble. Loads on first interaction.</td><td>Tidio dashboard; key in <a href="#theme-settings">Theme settings → Chat and analytics</a>. App embed stays off.</td></tr>
+      <tr><td>Microsoft Clarity</td><td>Session recordings and heatmaps. Loads on first interaction.</td><td>Clarity dashboard; project ID in Theme settings → Chat and analytics. App embed stays off.</td></tr>
+      <tr><td>Instafeed</td><td>Instagram feed on the Contact page.</td><td>Instafeed app. The theme loads it only where the feed appears; app embed stays off.</td></tr>
+      <tr><td>Enorm Apps gallery</td><td>The Our Customers photo gallery and viewer.</td><td>Enorm app. The page loads its own script; app embed stays off.</td></tr>
+      <tr><td>RevenueHunt</td><td>Build My Skatepark quiz.</td><td>RevenueHunt app.</td></tr>
+      <tr><td>Theme Scientist</td><td>A/B testing. Only needed while a test is running.</td><td>Theme Scientist app.</td></tr>
+      <tr><td>Google &amp; YouTube / Customer events</td><td>Google Ads and Analytics tags.</td><td><span class="ui">Settings → Customer events</span> and the Google &amp; YouTube app (not the theme).</td></tr>
+      <tr><td>Shopify</td><td>Checkout, Shop Pay, Shop Pay Installments, Affirm, product recommendations and search.</td><td>Shopify Admin settings.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Cart</h2>
+  <p>The store uses Shopify's native cart page with built-in upgrades, recommendations, terms acceptance and a payment-terms note. The old Slide cart app is not used.</p>
+
+  <h2>Before switching an app embed on</h2>
+  <p>Check this page first. Several embeds are off on purpose because the theme loads the same script in a faster way. Turning them on loads the script twice.</p>
+</article>
+
+<article class="doc" id="speed" data-group="Apps &amp; integrations">
+  <h1>Speed &amp; scripts</h1>
+  <p class="lede">What the theme does to keep pages fast, and what to watch when adding apps.</p>
+
+  <h2>What the theme already does</h2>
+  <ul>
+    <li>First-screen images load first. Images lower on the page, in closed menus or inside articles load when needed.</li>
+    <li>Images are served at the size they are shown.</li>
+    <li>Chat (Tidio) and Clarity start on the visitor's first interaction.</li>
+    <li>YouTube players and Affirm load only when needed.</li>
+    <li>App scripts used on one page only (Instafeed, the Enorm gallery) load only on that page.</li>
+  </ul>
+
+  <h2>What slows the site most today</h2>
+  <p>The Google tags set up in <span class="ui">Settings → Customer events</span> and the Google &amp; YouTube app. Each page loads several Google tags, some twice. Keep only the tags you use, and make sure each loads once.</p>
+
+  <div class="callout tip"><span class="t">When adding an app</span>Check PageSpeed (<a href="https://pagespeed.web.dev" target="_blank" rel="noopener">pagespeed.web.dev</a>) on the homepage and a product page before and after. Scores move a few points between runs, so compare two or three runs.</div>
+</article>
+
+<!-- ======================= MAINTENANCE ======================= -->
+
+<article class="doc" id="seo" data-group="Maintenance">
+  <h1>SEO &amp; content best practices</h1>
+  <p class="lede">A short checklist for every page, product and article.</p>
+
+  <ul>
+    <li>Write a clear, unique title and a useful description under <span class="ui">Search engine listing</span>.</li>
+    <li>Use one main heading (H1) and meaningful subheadings.</li>
+    <li>Keep URL handles short and stable. When changing one, add a URL redirect.</li>
+    <li>Add descriptive alt text to every image, and upload photos at least as wide as they are shown (1600 px for full-width article photos).</li>
+    <li>Link related pages and products, and check every button after editing.</li>
+  </ul>
+
+  <h2>Structured data the theme adds</h2>
+  <p>Products publish price, availability, brand, review rating (from Okendo), shipping and return policy. The homepage publishes the OC Ramps organization with its official social profiles. You do not need an SEO app for these.</p>
+
+  <h2>Redirects</h2>
+  <p>Add redirects in <span class="ui">Content → Menus → URL redirects</span>. Redirect to the exact matching page, never to the homepage.</p>
+</article>
+
+<article class="doc" id="users" data-group="Maintenance">
+  <h1>Users &amp; permissions</h1>
+  <p class="lede">Give each person their own account with only the access they need.</p>
+
+  <ol class="steps">
+    <li>The store owner opens <span class="ui">Settings → Users</span>.</li>
+    <li>Invite by email and grant only the permissions needed. A content editor usually needs products, content, files and online store.</li>
+    <li>Review staff and collaborator accounts after each project and remove the ones no longer needed.</li>
+  </ol>
+  <div class="callout warn"><span class="t">Security</span>Require two-step authentication. Never share one login. Never put passwords or API keys in these docs, GitHub or email.</div>
+</article>
+
+<article class="doc" id="troubleshooting" data-group="Maintenance">
+  <h1>Troubleshooting</h1>
+  <p class="lede">Symptoms and the first things to check, in order.</p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Problem</th><th>Check in this order</th></tr></thead>
+    <tbody>
+      <tr><td>My edit is missing</td><td>You edited the live theme (OC-Ramps/QA) and saved; the page uses the template you edited; refresh in a private window.</td></tr>
+      <tr><td>A product section is blank</td><td>The product's PDP Profile, then its collection's profile, then the field itself. Specs need <code>custom.pdp_specs</code>.</td></tr>
+      <tr><td>Wrong copy on several products</td><td>They share one profile. Give the product its own profile.</td></tr>
+      <tr><td>Free-shipping card missing or showing wrongly</td><td>The Theme settings → Free-shipping claim list, then <code>shipping_card_1_title</code> / <code>_body</code> in the profile.</td></tr>
+      <tr><td>Article missing from a hub, tab or filter</td><td>Right blog, published, exact tag spelling (capitals and spaces), right template.</td></tr>
+      <tr><td>Featured story not showing</td><td>The article carries the tab's tag and is in the Our Work blog.</td></tr>
+      <tr><td>Glossary or rider page empty</td><td>The metaobject entry exists; the page's <code>custom.team_rider</code> is linked; the glossary category matches an existing tab.</td></tr>
+      <tr><td>Blurry photo</td><td>The uploaded file is too small. Re-upload at least 1600 px wide (1000 px for profile photos).</td></tr>
+      <tr><td>Face cut off on a story card</td><td>Set the photo's focal point in Shopify.</td></tr>
+      <tr><td>Broken link or 404</td><td>Menu URL and page publish state; add a redirect for changed handles.</td></tr>
+      <tr><td>Chat or Clarity not loading</td><td>The key or ID in Theme settings → Chat and analytics. They only start after the visitor moves the mouse, taps or scrolls.</td></tr>
+      <tr><td>Slow page</td><td>Oversized images, a newly added app, extra Google tags in Customer events.</td></tr>
+    </tbody>
+  </table></div>
+  <p>When asking for help, send the page URL, the theme name, a screenshot, the device and browser, the steps to reproduce and the last change made. Never send passwords.</p>
+</article>
+
+<article class="doc" id="developer" data-group="Maintenance">
+  <h1>Developer reference</h1>
+  <p class="lede">How the theme is built and how to release changes safely.</p>
+
+  <h2>Folders</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Folder</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td><code>layout/</code></td><td>The page shell (<code>theme.liquid</code>).</td></tr>
+      <tr><td><code>templates/</code></td><td>JSON page recipes and their saved section settings.</td></tr>
+      <tr><td><code>sections/</code>, <code>blocks/</code></td><td>Sections and theme blocks used in the editor.</td></tr>
+      <tr><td><code>snippets/</code></td><td>Reusable Liquid, for example <code>pdp-profile</code>, <code>pdp-free-shipping-claim</code>, <code>third-party-scripts</code>.</td></tr>
+      <tr><td><code>assets/</code></td><td>CSS, JavaScript, icons and fonts.</td></tr>
+      <tr><td><code>config/</code></td><td>Theme settings schema and saved settings (including app embed on/off).</td></tr>
+      <tr><td><code>locales/</code></td><td>Interface text.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Release workflow</h2>
+  <ol class="steps">
+    <li>Duplicate the live theme as a dated backup.</li>
+    <li>Make each fix as its own commit, titled with its tracker ID (for example <code>T-79: …</code>).</li>
+    <li>Push the branch to a review theme and check desktop and phone against live.</li>
+    <li>Merge into <code>QA</code> only after approval. The live theme updates from <code>QA</code> through the GitHub integration.</li>
+  </ol>
+
+  <h2>Rules that avoid breakage</h2>
+  <ul>
+    <li>Theme editor saves write to the JSON templates. Pull the latest theme files before pushing, so merchant edits are not overwritten.</li>
+    <li>Shopify rejects template JSON over 512 KB. <code>templates/index.json</code> is kept minified for this reason.</li>
+    <li>Use settings (colour schemes, type presets, padding, gap) before CSS. Never write CSS that overrides an editor setting.</li>
+    <li>Use Shopify image files and image settings, not images uploaded into the theme.</li>
+  </ul>
+</article>
+
+<article class="doc" id="maintenance" data-group="Maintenance">
+  <h1>Routine maintenance</h1>
+  <p class="lede">A light routine that keeps the store healthy.</p>
+
+  <h2>Monthly</h2>
+  <ul>
+    <li>Click through home, a collection, a product, cart and checkout on phone and desktop.</li>
+    <li>Check mega menu cards and footer links after products or collections are removed.</li>
+    <li>Check the Okendo, Klaviyo and Tidio dashboards for errors.</li>
+  </ul>
+  <h2>Quarterly</h2>
+  <ul>
+    <li>Duplicate the live theme as a dated backup.</li>
+    <li>Run PageSpeed on home, a collection and a product page.</li>
+    <li>Review staff accounts, unused apps and the Google tags in Customer events.</li>
+    <li>Review the Free-shipping claim list against the current shipping policy.</li>
+  </ul>
+  <h2>Before a campaign</h2>
+  <ul>
+    <li>Build landing pages on a duplicated template, preview, then publish.</li>
+    <li>Update the hero slides, mega menu cards and featured stories.</li>
+  </ul>
+  <div class="callout"><span class="t">Backups</span>A theme duplicate protects theme code and settings only. Export products and content separately with Shopify's export tools or an approved backup app.</div>
+</article>
+
+<!-- ======================= HANDOFF ======================= -->
+
+<article class="doc" id="release-notes" data-group="Handoff">
+  <h1>Release notes</h1>
+  <p class="lede">What Nine15 delivered in the October–November 2026 fix release. Each item is a separate change tracked by its ID.</p>
+
+  <h2>Live now</h2>
+  <ul>
+    <li><strong>T-22</strong>: Four old links redirect to the right pages.</li>
+  </ul>
+
+  <h2>Fix release</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>ID</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td>T-13</td><td>Accessibility fixes, including Warehouse gallery keyboard support.</td></tr>
+      <tr><td>T-15</td><td>Shipping &amp; Delivery and Returns links in the footer.</td></tr>
+      <tr><td>T-19</td><td>Speed work: image sizing and loading order, delayed chat and analytics, page-only app scripts.</td></tr>
+      <tr><td>T-20</td><td>The duplicate Half Pipes address points Google to the main collection.</td></tr>
+      <tr><td>T-24</td><td>Ramp pages tell shoppers outside the lower 48 to ask for a quote.</td></tr>
+      <tr><td>T-27</td><td>Official social profiles added to Google's information about OC Ramps.</td></tr>
+      <tr><td>T-31</td><td>Starting prices use in-stock options; homepage product cards show real names, prices and reviews.</td></tr>
+      <tr><td>T-44</td><td>Shared product links show the selected option's price.</td></tr>
+      <tr><td>T-51</td><td>"Our Work / Blog" menu card.</td></tr>
+      <tr><td>T-57</td><td>Duplicate brand name removed from product data.</td></tr>
+      <tr><td>T-63</td><td>Brand Activations form: sent/error messages and no double sending.</td></tr>
+      <tr><td>T-64</td><td>Gallery headings, TV video popup and gallery viewer keyboard support.</td></tr>
+      <tr><td>T-68</td><td>Proper headings on Library, Tricks and Glossary pages.</td></tr>
+      <tr><td>T-78</td><td>Product option buttons styled to the design.</td></tr>
+      <tr><td>T-79</td><td>Free-shipping card only on eligible products.</td></tr>
+      <tr><td>T-81</td><td>Article sidebar hides links that go nowhere.</td></tr>
+      <tr><td>T-83</td><td>Sharp menu card photos.</td></tr>
+      <tr><td>T-85</td><td>Homepage slideshow keeps playing; Pause works.</td></tr>
+      <tr><td>T-86</td><td>Lighter photo overlays that keep the dark only behind the text.</td></tr>
+      <tr><td>T-96</td><td>Return policy added to product data for Google.</td></tr>
+      <tr><td>T-108</td><td>Sharper article photos, whole product photos on collection cards, centred project carousel.</td></tr>
+      <tr><td>T-111</td><td>Readable FAQ answers and footer icons, headings and links.</td></tr>
+      <tr><td>T-113</td><td>The Collections review count opens the Reviews page.</td></tr>
+    </tbody>
+  </table></div>
+</article>
+
+<article class="doc" id="support" data-group="Handoff">
+  <h1>Support &amp; contacts</h1>
+  <p class="lede">Who to contact, how, and until when.</p>
+
+  <h2>Nine15 support</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Item</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td>Support contact</td><td>Amine, Nine15 project lead</td></tr>
+      <tr><td>Support channel</td><td>The shared OC Ramps × Nine15 project chat</td></tr>
+      <tr><td>Support period ends</td><td>Friday, November 6, 2026</td></tr>
+      <tr><td>Included</td><td>Fixes to theme code delivered by Nine15 for the agreed items.</td></tr>
+      <tr><td>Not included</td><td>New features, new pages or designs, content writing, app configuration and items owned by others.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Who handles what</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Issue</th><th>Contact</th></tr></thead>
+    <tbody>
+      <tr><td>Content: products, articles, pages, menus</td><td>OC Ramps store team</td></tr>
+      <tr><td>Theme code delivered by Nine15 (during support)</td><td>Nine15, through the project chat</td></tr>
+      <tr><td>An app not working</td><td>The app's vendor (Okendo, Klaviyo, Tidio, Consentmo and so on)</td></tr>
+      <tr><td>Tracking and Google tags</td><td>The analytics owner (Customer events and the Google &amp; YouTube app)</td></tr>
+      <tr><td>Checkout, hosting, domain or SSL</td><td>Shopify support and the domain registrar</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Store contact</h2>
+  <p>Public phone: <strong>888-789-6272</strong>.</p>
+
+  <div class="callout"><span class="t">Private handoff</span>Theme IDs, staff accounts, app owners and credentials belong in the store's private password manager, not in these docs.</div>
+</article>
+
+  </main>
+
+  <aside class="toc" id="toc" aria-label="On this page"></aside>
+</div>
+
+<dialog class="search-dialog" id="search-dialog" aria-label="Search documentation">
+  <div class="search-head">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="search-input" type="search" placeholder="Search tags, metafields, templates…" autocomplete="off" aria-controls="search-results">
+    <kbd>Esc</kbd>
+  </div>
+  <ul class="results" id="search-results" role="listbox"></ul>
+  <div class="search-foot"><span><kbd>↑</kbd> <kbd>↓</kbd> to move</span><span><kbd>↵</kbd> to open</span></div>
+</dialog>
+
+<script>
+(() => {
+  const docs = [...document.querySelectorAll('article.doc')];
+  const nav = document.getElementById('sidenav');
+  const toc = document.getElementById('toc');
+  const slug = (s) => s.toLowerCase().replace(/&amp;|&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+  // Heading ids, anchors and copy buttons
+  docs.forEach((doc) => {
+    const used = new Set();
+    doc.querySelectorAll('h2, h3').forEach((h) => {
+      let id = doc.id + '.' + slug(h.textContent);
+      while (used.has(id)) id += '-2';
+      used.add(id);
+      h.id = id;
+      const a = document.createElement('a');
+      a.className = 'anchor'; a.href = '#' + id; a.textContent = '#'; a.setAttribute('aria-label', 'Link to this section');
+      h.append(a);
+    });
+    const crumb = document.createElement('div');
+    crumb.className = 'crumbs';
+    crumb.textContent = doc.dataset.group.replace('&amp;', '&');
+    doc.prepend(crumb);
+  });
+  document.querySelectorAll('pre').forEach((pre) => {
+    const wrap = pre.parentElement.classList.contains('codeblock') ? pre.parentElement : null;
+    if (!wrap) return;
+    const btn = document.createElement('button');
+    btn.className = 'copy'; btn.type = 'button'; btn.textContent = 'Copy';
+    btn.addEventListener('click', () => {
+      const text = pre.innerText;
+      const done = () => { btn.textContent = 'Copied'; setTimeout(() => (btn.textContent = 'Copy'), 1400); };
+      navigator.clipboard?.writeText(text).then(done, () => {
+        const r = document.createRange(); r.selectNodeContents(pre);
+        const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      });
+    });
+    wrap.append(btn);
+  });
+
+  // Sidebar
+  const groups = [];
+  docs.forEach((d) => {
+    let g = groups.find((x) => x.name === d.dataset.group);
+    if (!g) groups.push((g = { name: d.dataset.group, docs: [] }));
+    g.docs.push(d);
+  });
+  nav.innerHTML = groups.map((g) => `<div class="nav-group"><h4>${g.name}</h4>${g.docs
+    .map((d) => `<a href="#${d.id}" data-doc="${d.id}">${d.querySelector('h1').textContent}</a>`).join('')}</div>`).join('');
+
+  // Prev / next
+  docs.forEach((d, i) => {
+    const prev = docs[i - 1], next = docs[i + 1];
+    const pager = document.createElement('nav');
+    pager.className = 'pager';
+    pager.innerHTML =
+      (prev ? `<a class="prev" href="#${prev.id}"><small>Previous</small><span>${prev.querySelector('h1').textContent}</span></a>` : '<span style="flex:1"></span>') +
+      (next ? `<a class="next" href="#${next.id}"><small>Next</small><span>${next.querySelector('h1').textContent}</span></a>` : '');
+    d.append(pager);
+  });
+
+  let current = null;
+  let spy = [];
+
+  function buildToc(doc) {
+    const hs = [...doc.querySelectorAll('h2, h3')];
+    spy = hs;
+    if (!hs.length) { toc.innerHTML = ''; return; }
+    toc.innerHTML = '<h5>On this page</h5><ul>' + hs.map((h) =>
+      `<li class="${h.tagName === 'H3' ? 'sub' : ''}"><a href="#${h.id}" data-target="${h.id}">${h.firstChild.textContent}</a></li>`).join('') + '</ul>';
+    updateSpy();
+  }
+
+  function show(id, headingId, smooth) {
+    const doc = docs.find((d) => d.id === id) || docs[0];
+    if (doc !== current) {
+      docs.forEach((d) => (d.hidden = d !== doc));
+      current = doc;
+      nav.querySelectorAll('a').forEach((a) => {
+        if (a.dataset.doc === doc.id) a.setAttribute('aria-current', 'page');
+        else a.removeAttribute('aria-current');
+      });
+      document.title = doc.querySelector('h1').textContent + ' · OC Ramps Theme Docs';
+      buildToc(doc);
+    }
+    document.body.classList.remove('nav-open');
+    document.getElementById('menu-btn').setAttribute('aria-expanded', 'false');
+    const target = headingId && document.getElementById(headingId);
+    if (target) target.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+    else window.scrollTo(0, 0);
+  }
+
+  function route(smooth) {
+    const hash = decodeURIComponent(location.hash.slice(1));
+    const [page] = hash.split('.');
+    show(page || 'overview', hash.includes('.') ? hash : null, smooth);
+  }
+
+  function updateSpy() {
+    if (!spy.length) return;
+    let active = spy[0];
+    const line = 90;
+    for (const h of spy) { if (h.getBoundingClientRect().top - line <= 0) active = h; else break; }
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) active = spy[spy.length - 1];
+    toc.querySelectorAll('a').forEach((a) => a.classList.toggle('active', a.dataset.target === active.id));
+  }
+
+  // Internal links: route without relying on hash support in every viewer
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const hash = a.getAttribute('href').slice(1);
+    if (!hash) return;
+    e.preventDefault();
+    try { history.pushState(null, '', '#' + hash); } catch (_) {}
+    const [page] = hash.split('.');
+    show(page, hash.includes('.') ? hash : null, true);
+  });
+  addEventListener('popstate', () => route(false));
+  addEventListener('hashchange', () => route(false));
+  addEventListener('scroll', updateSpy, { passive: true });
+
+  // Mobile nav
+  const menuBtn = document.getElementById('menu-btn');
+  menuBtn.addEventListener('click', () => {
+    const open = document.body.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  // Search index: one entry per page intro and per heading section
+  const index = [];
+  docs.forEach((doc) => {
+    const title = doc.querySelector('h1').textContent;
+    let entry = { doc: doc.id, page: title, heading: title, target: null, text: '' };
+    index.push(entry);
+    for (const el of doc.children) {
+      if (el.matches('.crumbs, .pager, h1')) continue;
+      if (el.matches('h2, h3')) {
+        entry = { doc: doc.id, page: title, heading: el.firstChild.textContent, target: el.id, text: '' };
+        index.push(entry);
+      } else {
+        const cells = el.querySelectorAll('td');
+        const text = cells.length ? [...cells].map((c) => c.textContent).join(' · ') : el.textContent;
+        entry.text += ' ' + text.replace(/\s+/g, ' ');
+      }
+    }
+  });
+
+  const dialog = document.getElementById('search-dialog');
+  const input = document.getElementById('search-input');
+  const results = document.getElementById('search-results');
+  let hits = [], sel = 0;
+  const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+  function highlight(text, terms) {
+    let out = esc(text);
+    terms.forEach((t) => { out = out.replace(new RegExp('(' + reEsc(esc(t)) + ')', 'gi'), '<mark>$1</mark>'); });
+    return out;
+  }
+
+  function search(q) {
+    const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+    if (!terms.length) {
+      hits = docs.slice(0, 8).map((d) => index.find((e) => e.doc === d.id && !e.target));
+    } else {
+      hits = index.map((e) => {
+        const h = e.heading.toLowerCase(), p = e.page.toLowerCase(), t = e.text.toLowerCase();
+        let score = 0;
+        for (const term of terms) {
+          const s = (h.includes(term) ? 10 : 0) + (p.includes(term) ? 4 : 0) + (t.includes(term) ? 2 + Math.min(3, t.split(term).length - 2) : 0);
+          if (!s) return null;
+          score += s;
+        }
+        return { ...e, score };
+      }).filter(Boolean).sort((a, b) => b.score - a.score).slice(0, 20);
+    }
+    sel = 0;
+    render(terms);
+  }
+
+  function snippet(text, terms) {
+    const t = text.trim();
+    if (!terms.length) return t.slice(0, 120) + (t.length > 120 ? '…' : '');
+    const i = Math.max(0, t.toLowerCase().indexOf(terms[0]));
+    const start = Math.max(0, i - 50);
+    return (start ? '…' : '') + t.slice(start, start + 150) + (t.length > start + 150 ? '…' : '');
+  }
+
+  function render(terms) {
+    if (!hits.length) {
+      results.innerHTML = `<li class="empty">No results. Try "tag", "metafield", "featured" or "free shipping".</li>`;
+      return;
+    }
+    results.innerHTML = hits.map((e, i) => `<li><a href="#${e.target || e.doc}" role="option" aria-selected="${i === sel}" data-i="${i}">
+      <span class="rp">${esc(e.page)}</span>
+      <span class="rh">${highlight(e.heading, terms)}</span>
+      <span class="rs">${highlight(snippet(e.text, terms), terms)}</span></a></li>`).join('');
+  }
+
+  function move(d) {
+    if (!hits.length) return;
+    sel = (sel + d + hits.length) % hits.length;
+    results.querySelectorAll('a').forEach((a, i) => a.setAttribute('aria-selected', String(i === sel)));
+    results.querySelectorAll('a')[sel].scrollIntoView({ block: 'nearest' });
+  }
+
+  function openSearch() {
+    if (!dialog.open) dialog.showModal();
+    input.value = ''; search(''); input.focus();
+  }
+  document.getElementById('search-btn').addEventListener('click', openSearch);
+  input.addEventListener('input', () => search(input.value));
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
+    else if (e.key === 'Enter') { e.preventDefault(); results.querySelectorAll('a')[sel]?.click(); }
+  });
+  results.addEventListener('click', (e) => { if (e.target.closest('a')) dialog.close(); });
+  dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+  document.addEventListener('keydown', (e) => {
+    if (root.classList.contains('locked')) return;
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); openSearch(); }
+    else if (e.key === '/' && !dialog.open && !/input|textarea/i.test(document.activeElement.tagName)) { e.preventDefault(); openSearch(); }
+  });
+
+  // Password gate. The unlock is remembered in this browser, so page switches and reloads don't ask again.
+  // To change the password, put the new value's hash in PASSWORD_HASH (run cyrb53('new password') in the console).
+  const PASSWORD_HASH = 2108424534262486;
+  const KEY = 'oc-docs-unlocked';
+  function cyrb53(str) {
+    let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+    for (let i = 0; i < str.length; i++) {
+      const ch = str.charCodeAt(i);
+      h1 = Math.imul(h1 ^ ch, 2654435761);
+      h2 = Math.imul(h2 ^ ch, 1597334677);
+    }
+    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507);
+    h1 ^= Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507);
+    h2 ^= Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+    return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+  }
+  window.cyrb53 = cyrb53;
+  const root = document.documentElement;
+  const gateForm = document.getElementById('gate-form');
+  const gateInput = document.getElementById('gate-password');
+  const gateError = document.getElementById('gate-error');
+  if (root.classList.contains('locked')) gateInput.focus();
+  gateForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (cyrb53(gateInput.value.trim()) !== PASSWORD_HASH) {
+      gateError.textContent = 'That password is not right. Try again.';
+      gateInput.select();
+      return;
+    }
+    try { localStorage.setItem(KEY, '1'); } catch (_) {}
+    try { sessionStorage.setItem(KEY, '1'); } catch (_) {}
+    gateInput.value = ''; gateError.textContent = '';
+    root.classList.remove('locked');
+    route(false);
+  });
+  document.getElementById('lock-btn').addEventListener('click', () => {
+    try { localStorage.removeItem(KEY); sessionStorage.removeItem(KEY); } catch (_) {}
+    root.classList.add('locked');
+    gateInput.focus();
+  });
+
+  route(false);
+})();
+</script>
+</body>
+</html>

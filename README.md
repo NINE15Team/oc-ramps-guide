@@ -1,9 +1,9 @@
-# OC Ramps QA theme guide
+# OC Ramps theme docs
 
-This repository publishes the plain-language QA theme guide at [GitHub Pages](https://nine15team.github.io/oc-ramps-guide/). Open `index.html` locally to preview it. The site uses static HTML, CSS and JavaScript and needs no build step.
+This repository publishes the OC Ramps theme documentation at [GitHub Pages](https://nine15team.github.io/oc-ramps-guide/). Everything is in one file, `index.html` (styles and scripts included), so there is no build step. Open it locally to preview it.
 
-The private theme source is `NINE15Team/OC-Ramps` on the `QA` branch. Keep Shopify credentials, app keys, DNS ownership details and staff access records in a private password manager or handoff document, never in this public repository.
+The docs are behind a simple password gate. To change the password, open the page, run `cyrb53('new password')` in the browser console, and put the result in `PASSWORD_HASH` in `index.html`. The gate keeps casual visitors out; it is not real security, so never put credentials, keys or private account details in this repository.
 
-After a theme change, update the relevant section in `index.html`, check the navigation and links, then push to `main`. GitHub Pages publishes from `main` at the repository root.
+To add or edit a page, copy an `<article class="doc">` block, give it a unique `id` and a `data-group`. The sidebar, search, "On this page" list and previous/next links are built from those articles automatically.
 
-The store owner should verify Admin-only details separately: live/QA theme IDs, active app and pixel owners, payment configuration, domain and DNS provider, staff roles, backup process and technical support contacts.
+The theme source is `NINE15Team/OC-Ramps`. The live theme (OC-Ramps/QA) is connected to the `QA` branch. After a theme change, update the relevant page here, check links and search, then push to `main`. GitHub Pages publishes from `main` at the repository root.
