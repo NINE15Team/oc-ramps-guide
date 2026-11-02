@@ -475,7 +475,7 @@ td code { white-space: nowrap; }
     <thead><tr><th>Page type</th><th>Template</th><th>Live example</th></tr></thead>
     <tbody>
       <tr><td>Get Started hub</td><td><code>page.where-to-start</code></td><td><a href="https://ocramps.com/pages/first-timer-where-do-i-start" target="_blank" rel="noopener">/pages/first-timer-where-do-i-start</a></td></tr>
-      <tr><td>Buyer's Guides blog (hub + full list)</td><td><code>blog.buyers-guide</code></td><td><a href="https://ocramps.com/blogs/buyers-guides" target="_blank" rel="noopener">/blogs/buyers-guides</a></td></tr>
+      <tr><td>Buyer's Guides blog (hub)</td><td><code>blog.buyers-guide</code></td><td><a href="https://ocramps.com/blogs/buyers-guides" target="_blank" rel="noopener">/blogs/buyers-guides</a></td></tr>
       <tr><td>Buyer's Guide article</td><td><code>article.buyers-guide</code></td><td><a href="https://ocramps.com/blogs/buyers-guides/skate-ramp-dimensions" target="_blank" rel="noopener">Skate Ramp Dimensions</a></td></tr>
       <tr><td>DIY Plans hub</td><td><code>page.DIY-plans-hub</code></td><td><a href="https://ocramps.com/pages/diy-plans-hub" target="_blank" rel="noopener">/pages/diy-plans-hub</a></td></tr>
       <tr><td>DIY Plans blog (listings)</td><td><code>blog.DIY-plans</code></td><td><a href="https://ocramps.com/blogs/diy-plans" target="_blank" rel="noopener">/blogs/diy-plans</a></td></tr>
@@ -886,7 +886,7 @@ td code { white-space: nowrap; }
   <h2>Add a new category card to the hub</h2>
   <ol class="steps">
     <li>Decide the tag first, in Style A, for example <code>pump_track__plan</code>.</li>
-    <li>In Shopify Admin, publish at least one DIY Plans article with that tag. A card pointing at a tag with no articles opens an empty page.</li>
+    <li>In Shopify Admin, publish at least one DIY Plans article with that tag. A card pointing at a tag with no published articles opens a "page not found" page.</li>
     <li>In the theme editor, open <span class="ui">Pages → DIY-plans-hub</span> and the plan categories section. Duplicate an existing card so it keeps the same styling.</li>
     <li>Update the new card's label, image and link (<code>/blogs/diy-plans/tagged/pump_track__plan</code>), and the <strong>tag</strong> in its <span class="ui">Blog tag article count</span> block.</li>
     <li>Save, open the hub and click the card. It should list your article, and the count should show at least 1.</li>
@@ -897,7 +897,7 @@ td code { white-space: nowrap; }
 
 <article class="doc" id="buyers-guides" data-group="Blogs &amp; content">
   <h1>Buyer's Guides</h1>
-  <p class="lede">The Buyer's Guides blog page is a hub: decision cards, a recommended reading order and the full list of guides. The cards are edited in the theme editor. No tags are needed.</p>
+  <p class="lede">The Buyer's Guides blog page is a hub: decision cards and a recommended reading order, all edited in the theme editor. No tags are needed.</p>
 
   <h2>Pages involved</h2>
   <div class="table-wrap"><table>
@@ -915,8 +915,12 @@ td code { white-space: nowrap; }
     <li>Each block has a title, description, <span class="ui">Final article destination</span> and an optional <span class="ui">Published page while article is hidden</span>. If the final article is not published yet, the card links to the fallback page instead, so it never leads to a missing page.</li>
   </ol>
 
-  <h2>The full guide list</h2>
-  <p>The list below the hub shows every published article in the Buyer's Guides blog, four per page, newest first. Publishing a guide adds it automatically.</p>
+  <h2>Hidden sections on this page</h2>
+  <p>The page currently shows <strong>only the hub</strong>. The template also contains a Featured story, a full guide list (4 per page, newest first), a recommended product, FAQs and a "more guides" section, but they are <strong>switched off</strong> (hidden) in the theme editor.</p>
+  <ul>
+    <li>Because the list is hidden, publishing a guide does <strong>not</strong> add it to this page by itself. Readers reach a guide through a hub card that links to it, a menu link or search.</li>
+    <li>To show a hidden section, open <span class="ui">Blogs → buyers-guide</span> in the theme editor and click the eye icon next to the section, then save.</li>
+  </ul>
 
   <h2>Write a guide article</h2>
   <ol class="steps">
@@ -942,7 +946,7 @@ td code { white-space: nowrap; }
     </tbody>
   </table></div>
 
-  <p>Listings show 10 articles per page, newest first, with page links at the bottom. Change the number in the <span class="ui">Trick browse</span> section's <span class="ui">Articles per page</span> setting (theme editor → <span class="ui">Blogs → skate-library</span>). The Buyer's Guides list shows 4 per page.</p>
+  <p>Listings show 10 articles per page, newest first, with page links at the bottom. Change the number in the <span class="ui">Trick browse</span> section's <span class="ui">Articles per page</span> setting (theme editor → <span class="ui">Blogs → skate-library</span>).</p>
 
   <h2>Filter tabs</h2>
   <p>The tabs are <strong>All</strong>, <code>Flat Ground</code>, <code>Transition</code>, <code>Grinds</code>, <code>Manuals</code> and <code>Airs</code>. An article appears under a tab when it carries that tag. Tabs are blocks in the <span class="ui">Trick browse</span> section of the <code>blog.skate-library</code> template.</p>
@@ -1083,7 +1087,7 @@ td code { white-space: nowrap; }
   <ol class="steps">
     <li><span class="ui">Content → Blog posts → Add blog post</span>. Blog: <strong>Buyer's Guides</strong>. Template: <code>article.buyers-guide</code>.</li>
     <li>Add title, body, featured image, excerpt and search listing. Publish.</li>
-    <li>If a hub card should point to it, set that card's <span class="ui">Final article destination</span> in the theme editor.</li>
+    <li>Link it from the hub: set a Decision or Guide card's <span class="ui">Final article destination</span> in the theme editor. The page's full guide list is hidden, so without a card (or a menu link) readers will not find it from the Buyer's Guides page.</li>
   </ol>
 
   <h2>Publish a trick or lesson</h2>
@@ -1110,7 +1114,7 @@ td code { white-space: nowrap; }
   </ol>
 
   <h2>Change a featured article</h2>
-  <p>For the Our Work tabs, see <a href="#stories.choose-the-featured-story">Choose the featured story</a>. For the Buyer's Guides, DIY Plans and Skate Library pages, see <a href="#featured-articles">Featured articles on blog pages</a>.</p>
+  <p>For the Our Work tabs, see <a href="#stories.choose-the-featured-story">Choose the featured story</a>. For the DIY Plans and Skate Library pages, see <a href="#featured-articles">Featured articles on blog pages</a>.</p>
 
   <h2>Move an article to another category</h2>
   <ol class="steps">
@@ -1123,16 +1127,16 @@ td code { white-space: nowrap; }
 
 <article class="doc" id="featured-articles" data-group="Blogs &amp; content">
   <h1>Featured articles on blog pages</h1>
-  <p class="lede">The Buyer's Guides, DIY Plans and Skate Library blog pages each have a large Featured section near the top. It shows one article that someone picked by hand.</p>
+  <p class="lede">The DIY Plans and Skate Library blog pages each have a large Featured section near the top. It shows one article that someone picked by hand. (The Buyer's Guides page has one too, but it is currently hidden.)</p>
 
   <h2>It is not driven by tags</h2>
   <p>Adding a tag never changes the featured article. Publishing a newer article never changes it either. It stays on the picked article until someone changes it in the theme editor.</p>
-  <div class="callout warn"><span class="t">Check this</span>At the time of writing, the Featured section on all three pages points to the same Our Work story ("Glamis Oasis desert skate ramp"). Pick a relevant article for each page.</div>
+  <div class="callout warn"><span class="t">Check this</span>At the time of writing, the Featured section on both pages points to the same Our Work story ("Glamis Oasis desert skate ramp"). Pick a relevant article for each page.</div>
 
   <h2>Change the featured article</h2>
   <ol class="steps">
     <li>Go to <span class="ui">Online Store → Themes</span> and click <span class="ui">Customize</span> on the live theme.</li>
-    <li>Use the page selector to open the blog: <span class="ui">Blogs → buyers-guide</span>, <span class="ui">Blogs → DIY-plans</span> or <span class="ui">Blogs → skate-library</span>.</li>
+    <li>Use the page selector to open the blog: <span class="ui">Blogs → DIY-plans</span> or <span class="ui">Blogs → skate-library</span>.</li>
     <li>In the left panel, click the <span class="ui">Blog featured story</span> section.</li>
     <li>Use the <span class="ui">Article</span> picker to choose the article. Optionally set a project title, caption, or a replacement image or video.</li>
     <li>Save and reload the page on the store.</li>
@@ -1298,7 +1302,7 @@ _our_work__Rentals &amp; Brand Activations</code></pre></div>
       <tr><td>Chat or Clarity not loading</td><td>The key or ID in Theme settings → Chat and analytics. They only start after the visitor moves the mouse, taps or scrolls.</td></tr>
       <tr><td>Slow page</td><td>Oversized images, a newly added app, extra Google tags in Customer events.</td></tr>
       <tr><td>DIY card count stuck after publishing</td><td>The tag does not exactly match the card's counter (one underscore instead of two is the usual cause). Delete the tag, paste the right one from the <a href="#cheat-sheet">cheat sheet</a>, save and reload the hub.</td></tr>
-      <tr><td>Hub card opens an empty page</td><td>No published article carries that card's tag, or the card's link uses a different tag than the articles.</td></tr>
+      <tr><td>Hub card opens an empty or "page not found" page</td><td>No published article carries that card's tag, or the card's link uses a different tag than the articles.</td></tr>
       <tr><td>Skate Library tab greyed out</td><td>No published article carries that tab's tag yet. Tag one article with the exact tab name.</td></tr>
       <tr><td>Article shows nowhere although the tag is right</td><td>It was saved to the wrong blog. Check the Blog dropdown on the article.</td></tr>
       <tr><td>Tag typed with spaces instead of underscores</td><td>Delete the tag completely and paste the correct one. Do not edit it in place; leftover characters are easy to miss.</td></tr>
