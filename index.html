@@ -814,6 +814,35 @@ td code { white-space: nowrap; }
       <tr><td>Buyer's Guides</td><td>No tags needed. The hub is edited in the theme editor.</td><td>See <a href="#buyers-guides">Buyer's Guides</a></td></tr>
     </tbody>
   </table></div>
+
+  <h2>Style A: double-underscore tags (DIY Plans)</h2>
+  <p>Format: <code>category_name__plan</code>. Anatomy of <code>quarter_pipe__plan</code>:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Part</th><th>Value</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td>Left side</td><td><code>quarter_pipe</code></td><td>The category name. Underscores become spaces on screen, so this reads "Quarter Pipe".</td></tr>
+      <tr><td>Separator</td><td><code>__</code></td><td>Two underscores, not one. This splits the category from the type.</td></tr>
+      <tr><td>Right side</td><td><code>plan</code></td><td>The type word. It is pluralized on screen, so it reads "Plans".</td></tr>
+      <tr><td>Result on screen</td><td colspan="2">Quarter Pipe Plans</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li>All lowercase, always. Words separated by single underscores. No spaces anywhere.</li>
+    <li><strong>Correct:</strong> <code>quarter_pipe__plan</code></li>
+    <li><strong>Wrong:</strong> <code>Quarter Pipe Plan</code>, <code>quarter_pipe_plan</code>, <code>quarter-pipe__plan</code>, <code>Quarter_Pipe__Plan</code></li>
+  </ul>
+
+  <h2>Style B: readable tags (Skate Library)</h2>
+  <ul>
+    <li>Normal words with spaces and capitals, typed exactly as the tab label reads.</li>
+    <li><strong>Correct:</strong> <code>Flat Ground</code></li>
+    <li><strong>Avoid:</strong> <code>flat ground</code>, <code>Flat_Ground</code>, <code>flatground</code>. The tab may still match some of these, but the tag is shown on cards exactly as typed, so keep the readable form.</li>
+  </ul>
+
+  <h2>Style C: prefixed tags (Our Work)</h2>
+  <p>A fixed prefix, two underscores, then the label: <code>_story_type__Builds</code> or <code>_our_work__Business Skateparks</code>. Keep the leading underscore, the capitals, the spaces and the <code>&amp;</code>.</p>
+
+  <div class="callout"><span class="t">Remember</span>The theme editor <strong>cannot create tags</strong>. It can only point at tags that already exist on articles. Every tag is created and edited in Shopify Admin, on the article itself. See <a href="#where-edited">Where each thing is edited</a>.</div>
 </article>
 
 <article class="doc" id="diy-plans" data-group="Blogs &amp; content">
@@ -844,7 +873,25 @@ td code { white-space: nowrap; }
   </table></div>
 
   <h2>How the counter works</h2>
-  <p>Each card counts every <strong>published</strong> DIY Plans article with its exact tag. Nothing to update by hand. After publishing, reload the hub and check the number went up. That is your proof the tag is right.</p>
+  <p>Each card counts every <strong>published</strong> DIY Plans article with its exact tag. Nothing to update by hand. The counter reads the tag only, not the title or category: type <code>mini_ramp_plan</code> with one underscore and the article publishes, but the count does not move. After publishing, reload the hub and check the number went up. That is your proof the tag is right.</p>
+
+  <h2>How the listing page works</h2>
+  <ul>
+    <li>Clicking a card opens a tagged listing, for example <code>/blogs/diy-plans/tagged/mini_ramp__plan</code>. It shows every published DIY Plans article with that tag, newest first. It fills itself.</li>
+    <li>The heading is <strong>generated from the tag</strong> in the URL: <code>mini_ramp__plan</code> becomes "Mini Ramp Plans". You do not type it anywhere.</li>
+    <li>On the plain blog page (no tag in the URL) a <strong>fallback title</strong> shows instead. Edit it in the theme editor: <span class="ui">Blogs → DIY-plans</span>, the tag heading block's <span class="ui">Fallback title</span>.</li>
+    <li>An article can carry two tags. It then appears under both cards and counts toward both numbers.</li>
+  </ul>
+
+  <h2>Add a new category card to the hub</h2>
+  <ol class="steps">
+    <li>Decide the tag first, in Style A, for example <code>pump_track__plan</code>.</li>
+    <li>In Shopify Admin, publish at least one DIY Plans article with that tag. A card pointing at a tag with no articles opens an empty page.</li>
+    <li>In the theme editor, open <span class="ui">Pages → DIY-plans-hub</span> and the plan categories section. Duplicate an existing card so it keeps the same styling.</li>
+    <li>Update the new card's label, image and link (<code>/blogs/diy-plans/tagged/pump_track__plan</code>), and the <strong>tag</strong> in its <span class="ui">Blog tag article count</span> block.</li>
+    <li>Save, open the hub and click the card. It should list your article, and the count should show at least 1.</li>
+  </ol>
+  <div class="callout warn"><span class="t">Link and counter must match</span>If the card opens the right listing but the count reads 0, the link and the count block point at two different tags. Use the same tag in both.</div>
   <div class="callout"><span class="t">Current state</span>DIY plan articles are hidden until their construction and media review is approved, so counts and listings are empty for now. They fill in as soon as tagged plans are published.</div>
 </article>
 
@@ -898,7 +945,20 @@ td code { white-space: nowrap; }
   <p>Listings show 10 articles per page, newest first, with page links at the bottom. Change the number in the <span class="ui">Trick browse</span> section's <span class="ui">Articles per page</span> setting (theme editor → <span class="ui">Blogs → skate-library</span>). The Buyer's Guides list shows 4 per page.</p>
 
   <h2>Filter tabs</h2>
-  <p>The tabs are <strong>All</strong>, <code>Flat Ground</code>, <code>Transition</code>, <code>Grinds</code>, <code>Manuals</code> and <code>Airs</code>. An article appears under a tab when it has that exact tag (capitals and spaces matter). Tabs are blocks in the <span class="ui">Trick browse</span> section of the <code>blog.skate-library</code> template. To add a tab, add a block there, then tag articles with its exact label.</p>
+  <p>The tabs are <strong>All</strong>, <code>Flat Ground</code>, <code>Transition</code>, <code>Grinds</code>, <code>Manuals</code> and <code>Airs</code>. An article appears under a tab when it carries that tag. Tabs are blocks in the <span class="ui">Trick browse</span> section of the <code>blog.skate-library</code> template.</p>
+  <ul>
+    <li><strong>All</strong> is built in. It has no tag and always shows everything.</li>
+    <li>A tab with <strong>no</strong> published articles still shows, but greyed out and not clickable. That is expected. Tag one article with that name and the tab turns on.</li>
+    <li>Tab links look like <code>/blogs/skate-library/tagged/flat-ground</code> (lowercase, hyphens). That is the site's doing; still type the readable tag <code>Flat Ground</code> on the article.</li>
+  </ul>
+
+  <h3>Add a new tab</h3>
+  <ol class="steps">
+    <li>Decide the label exactly as it should read, for example <code>Ledges</code>.</li>
+    <li>In Shopify Admin, tag at least one Skate Library article with that exact name.</li>
+    <li>In the theme editor, open <span class="ui">Blogs → skate-library → Trick browse</span>, add a tab block and type the same label.</li>
+    <li>Save and check the page. A greyed-out new tab means the article tag and the label do not match; compare them letter by letter.</li>
+  </ol>
 
   <h2>Article metafields</h2>
   <div class="table-wrap"><table>
@@ -908,7 +968,14 @@ td code { white-space: nowrap; }
       <tr><td><code>custom.category_metafield</code></td><td>For example Flat Ground</td><td>Category on the trick card. Empty falls back to the first tag.</td></tr>
     </tbody>
   </table></div>
+  <ul>
+    <li><strong>Difficulty is not a tag.</strong> Typing "Beginner" in the tags does nothing for the difficulty column. It must go in the Difficulty metafield. Metafields are at the bottom of the article page in Shopify Admin.</li>
+    <li><strong>Category is optional.</strong> Leave it blank and the card shows the article's first tag. If an article has several tags and the wrong one shows, fill in the Category metafield.</li>
+  </ul>
   <div class="callout"><span class="t">Field names</span>The live Skate Library reads <code>custom.difficulty_metafield</code> and <code>custom.category_metafield</code>. Older notes mention <code>custom.difficulty</code> and <code>custom.category</code>; those are not used on the live blog.</div>
+
+  <h2>Skate Library hub</h2>
+  <p>The hub's two article sections show <strong>hand-picked</strong> articles, currently chosen from the Builds &amp; Installations (Our Work) blog. Change them in the theme editor: <span class="ui">Pages → skate-library-hub</span>, then each <span class="ui">Blog posts</span> section's article picker. Tagging or publishing articles does not change them.</p>
 </article>
 
 <article class="doc" id="stories" data-group="Blogs &amp; content">
@@ -1004,6 +1071,14 @@ td code { white-space: nowrap; }
   <h1>Everyday publishing tasks</h1>
   <p class="lede">Step-by-step for the most common content jobs.</p>
 
+  <h2>Before every post</h2>
+  <ul>
+    <li>The <span class="ui">Blog</span> dropdown (right column) and the tags are <strong>separate settings</strong>. Both must be right: a correct tag on the wrong blog shows nowhere.</li>
+    <li>Pick the <span class="ui">Theme template</span> for that blog (see <a href="#templates">Template map</a>).</li>
+    <li>Copy tags from the <a href="#cheat-sheet">Tag cheat sheet</a> rather than typing them.</li>
+    <li>Add a featured image, set visibility to <span class="ui">Visible</span>, then <span class="ui">Save</span>.</li>
+  </ul>
+
   <h2>Publish a Buyer's Guide</h2>
   <ol class="steps">
     <li><span class="ui">Content → Blog posts → Add blog post</span>. Blog: <strong>Buyer's Guides</strong>. Template: <code>article.buyers-guide</code>.</li>
@@ -1034,11 +1109,91 @@ td code { white-space: nowrap; }
     <li>Publish, then check the DIY Plans hub count went up.</li>
   </ol>
 
-  <h2>Change a featured story</h2>
-  <p>See <a href="#stories.choose-the-featured-story">Choose the featured story</a>.</p>
+  <h2>Change a featured article</h2>
+  <p>For the Our Work tabs, see <a href="#stories.choose-the-featured-story">Choose the featured story</a>. For the Buyer's Guides, DIY Plans and Skate Library pages, see <a href="#featured-articles">Featured articles on blog pages</a>.</p>
 
   <h2>Move an article to another category</h2>
-  <p>Replace its category tag with the new one, save, and check both the old and the new listing.</p>
+  <ol class="steps">
+    <li>Open the article in Shopify Admin.</li>
+    <li>In <span class="ui">Tags</span>, remove the old category tag (click its ×) and add the new one.</li>
+    <li>Save, then check both listings. On the DIY hub, the old card's count goes down by one and the new one goes up by one.</li>
+  </ol>
+  <div class="callout tip"><span class="t">Tip</span>Do not leave both tags on unless you want the article in both places. A leftover old tag is the usual reason a count looks one too high.</div>
+</article>
+
+<article class="doc" id="featured-articles" data-group="Blogs &amp; content">
+  <h1>Featured articles on blog pages</h1>
+  <p class="lede">The Buyer's Guides, DIY Plans and Skate Library blog pages each have a large Featured section near the top. It shows one article that someone picked by hand.</p>
+
+  <h2>It is not driven by tags</h2>
+  <p>Adding a tag never changes the featured article. Publishing a newer article never changes it either. It stays on the picked article until someone changes it in the theme editor.</p>
+  <div class="callout warn"><span class="t">Check this</span>At the time of writing, the Featured section on all three pages points to the same Our Work story ("Glamis Oasis desert skate ramp"). Pick a relevant article for each page.</div>
+
+  <h2>Change the featured article</h2>
+  <ol class="steps">
+    <li>Go to <span class="ui">Online Store → Themes</span> and click <span class="ui">Customize</span> on the live theme.</li>
+    <li>Use the page selector to open the blog: <span class="ui">Blogs → buyers-guide</span>, <span class="ui">Blogs → DIY-plans</span> or <span class="ui">Blogs → skate-library</span>.</li>
+    <li>In the left panel, click the <span class="ui">Blog featured story</span> section.</li>
+    <li>Use the <span class="ui">Article</span> picker to choose the article. Optionally set a project title, caption, or a replacement image or video.</li>
+    <li>Save and reload the page on the store.</li>
+  </ol>
+
+  <h2>Badge on the featured article</h2>
+  <p>The small badge comes from the section's <span class="ui">Category tags</span> list: the first of the article's tags found in that list is shown. If none match, the section's <span class="ui">Tag fallback</span> text shows instead (for example "FEATURED").</p>
+</article>
+
+<article class="doc" id="where-edited" data-group="Blogs &amp; content">
+  <h1>Where each thing is edited</h1>
+  <p class="lede">Content lives in Shopify Admin. Which content a page shows, and how it looks, lives in the theme editor.</p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Do this in Shopify Admin</th><th>Do this in the theme editor</th></tr></thead>
+    <tbody>
+      <tr><td>Write and publish articles</td><td>Choose the featured article on each blog page and Our Work tab</td></tr>
+      <tr><td>Choose which blog an article belongs to</td><td>Add, remove or reorder DIY hub category cards</td></tr>
+      <tr><td>Add, remove or edit tags</td><td>Set the tag a DIY card links to and counts</td></tr>
+      <tr><td>Set the Skate Library Difficulty and Category metafields</td><td>Add, remove or rename Skate Library filter tabs</td></tr>
+      <tr><td>Upload featured images and set focal points</td><td>Edit the Buyer's Guides hub cards and their links</td></tr>
+      <tr><td>Set an article visible or hidden</td><td>Edit the DIY blog fallback title, section headings and intro text</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><span class="t">One line to remember</span>The theme editor <strong>cannot create tags</strong>. It can only point at tags that already exist on articles.</div>
+</article>
+
+<article class="doc" id="cheat-sheet" data-group="Blogs &amp; content">
+  <h1>Tag cheat sheet</h1>
+  <p class="lede">Copy one block, then paste the single tag you need. Each line is a complete tag.</p>
+
+  <h2>DIY Plans</h2>
+  <div class="codeblock"><pre><code>mini_ramp__plan
+quarter_pipe__plan
+skate_rail__plan
+box_ledge__plan
+bank_launch_transfer__plan
+custom_deck__plan</code></pre></div>
+
+  <h2>Skate Library filter tabs</h2>
+  <div class="codeblock"><pre><code>Flat Ground
+Transition
+Grinds
+Manuals
+Airs</code></pre></div>
+
+  <h2>Our Work story types</h2>
+  <div class="codeblock"><pre><code>_story_type__Builds
+_story_type__Events
+_story_type__Product Drops
+_story_type__Videos
+_story_type__Skate Stories</code></pre></div>
+
+  <h2>Our Work project types</h2>
+  <div class="codeblock"><pre><code>_our_work__Home &amp; Private Builds
+_our_work__Public &amp; Community Projects
+_our_work__Business Skateparks
+_our_work__Rentals &amp; Brand Activations</code></pre></div>
+
+  <h2>Buyer's Guides</h2>
+  <p>No tags needed.</p>
 </article>
 
 <!-- ======================= APPS ======================= -->
@@ -1142,6 +1297,14 @@ td code { white-space: nowrap; }
       <tr><td>Broken link or 404</td><td>Menu URL and page publish state; add a redirect for changed handles.</td></tr>
       <tr><td>Chat or Clarity not loading</td><td>The key or ID in Theme settings → Chat and analytics. They only start after the visitor moves the mouse, taps or scrolls.</td></tr>
       <tr><td>Slow page</td><td>Oversized images, a newly added app, extra Google tags in Customer events.</td></tr>
+      <tr><td>DIY card count stuck after publishing</td><td>The tag does not exactly match the card's counter (one underscore instead of two is the usual cause). Delete the tag, paste the right one from the <a href="#cheat-sheet">cheat sheet</a>, save and reload the hub.</td></tr>
+      <tr><td>Hub card opens an empty page</td><td>No published article carries that card's tag, or the card's link uses a different tag than the articles.</td></tr>
+      <tr><td>Skate Library tab greyed out</td><td>No published article carries that tab's tag yet. Tag one article with the exact tab name.</td></tr>
+      <tr><td>Article shows nowhere although the tag is right</td><td>It was saved to the wrong blog. Check the Blog dropdown on the article.</td></tr>
+      <tr><td>Tag typed with spaces instead of underscores</td><td>Delete the tag completely and paste the correct one. Do not edit it in place; leftover characters are easy to miss.</td></tr>
+      <tr><td>Featured article did not change after publishing</td><td>Featured sections are hand-picked. Change them in the theme editor (<a href="#featured-articles">Featured articles</a>).</td></tr>
+      <tr><td>DIY count one higher than expected</td><td>The article still carries its old category tag as well as the new one. Remove the old tag.</td></tr>
+      <tr><td>DIY listing heading looks generic</td><td>You opened the plain blog URL, which shows the fallback title. Open the tagged URL from a hub card.</td></tr>
     </tbody>
   </table></div>
   <p>When asking for help, send the page URL, the theme name, a screenshot, the device and browser, the steps to reproduce and the last change made. Never send passwords.</p>
