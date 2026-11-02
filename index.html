@@ -362,7 +362,7 @@ td code { white-space: nowrap; }
     <li><strong>Featured story per tab.</strong> Each Our Work tab has its own hand-picked featured story. See <a href="#stories">Our Work stories</a>.</li>
     <li><strong>Buyer's Guides hub</strong> with decision cards and a guide sequence, all edited in the theme editor. See <a href="#buyers-guides">Buyer's Guides</a>.</li>
     <li><strong>Skate Glossary and team rider profiles</strong> powered by metaobjects. See <a href="#glossary-riders">Glossary &amp; rider profiles</a>.</li>
-    <li><strong>Native Shopify cart</strong> with upgrades, recommendations and terms acceptance (no cart app).</li>
+    <li><strong>Native Shopify cart drawer</strong> with upgrades, recommendations and terms acceptance (no cart app).</li>
     <li>Apps for reviews (Okendo), email/SMS (Klaviyo), chat (Tidio), cookie consent (Consentmo), session recording (Microsoft Clarity) and more. See <a href="#apps">Apps &amp; integrations</a>.</li>
   </ul>
 
@@ -561,10 +561,10 @@ td code { white-space: nowrap; }
       <tr><td>Logo and favicon</td><td>Header logo and browser tab icon.</td></tr>
       <tr><td>Colors</td><td>The colour schemes every section picks from. Changing a scheme updates every section using it.</td></tr>
       <tr><td>Typography</td><td>Fonts and the size of each type preset on desktop and phone.</td></tr>
-      <tr><td>Cart</td><td>The native cart. It is set to the cart <strong>page</strong>.</td></tr>
+      <tr><td>Cart</td><td>The native cart. It opens as a <strong>drawer</strong> that slides in from the side; the full cart page is at /cart.</td></tr>
       <tr><td>Free-shipping claim</td><td>Which products show the free-shipping card. See <a href="#shipping-claim">Free-shipping claim</a>.</td></tr>
       <tr><td>Chat and analytics</td><td>Microsoft Clarity project ID and Tidio chat key. See below.</td></tr>
-      <tr><td>Product cards</td><td>Hover image, quick add and card style for every product grid.</td></tr>
+      <tr><td>Product cards</td><td>Quick add buttons, second image on hover and image carousel on product cards. All are currently switched off.</td></tr>
     </tbody>
   </table></div>
 
@@ -582,7 +582,7 @@ td code { white-space: nowrap; }
 
 <article class="doc" id="homepage" data-group="Editing the site">
   <h1>Home page</h1>
-  <p class="lede">The homepage is the <code>index</code> template: a hero slideshow, trust bar, Shop by Setup cards, best sellers, story, video, brands, custom builds, reviews, blog posts and newsletter.</p>
+  <p class="lede">The homepage is the <code>index</code> template. In order: hero slideshow, trust bar (reviews, kits sold, licensing, free shipping), Shop by Setup cards, "Not sure where to start?", best sellers, the founding story, video, built for brands, custom builds, reviews, "More from OC Ramps", blog posts, "Share your setup" and the newsletter sign-up.</p>
 
   <h2>Hero slideshow</h2>
   <ul>
@@ -634,7 +634,7 @@ td code { white-space: nowrap; }
   <ul>
     <li><strong>Menu columns</strong> (Shop, Learn, Services, Company) come from Shopify menus picked in each column's menu block.</li>
     <li><strong>Social icons</strong> link to Facebook, Instagram and YouTube. Edit the URLs in the social links block.</li>
-    <li><strong>Bottom row</strong> holds the copyright, Privacy, Terms, Shipping &amp; Delivery, Returns, Accessibility and Sitemap links. Each is a text block.</li>
+    <li><strong>Bottom row</strong> holds the copyright, Privacy, Terms, Shipping &amp; Delivery, Returns and Sitemap links. Each is a text block. (An Accessibility link block also exists but is switched off.)</li>
   </ul>
   <p>Footer headings, icons and links meet readability (contrast) standards on the dark background, including when hovered.</p>
 
@@ -655,7 +655,7 @@ td code { white-space: nowrap; }
   </ol>
 
   <h2>Inquiry forms</h2>
-  <p>Brand activations, event venue, installations, skate lessons and contact pages have inquiry forms. After sending, the form shows a clear "sent" or "error" message, and the send button cannot be pressed twice. Submissions arrive at the store's contact email.</p>
+  <p>Brand activations, event venue, installations, skate lessons and contact pages have inquiry forms. They are standard Shopify contact forms, so submissions arrive at the store's contact email. The Brand Activations form also shows a clear "sent" or "error" message and cannot be sent twice.</p>
 
   <h2>Contact page Instagram feed</h2>
   <p>The Contact page shows the Instafeed Instagram feed. Its script only loads on pages that contain the feed, so it does not slow other pages.</p>
@@ -686,7 +686,6 @@ td code { white-space: nowrap; }
       <tr><td><code>custom.pdp_profile</code></td><td>Links this product to a PDP Profile. Overrides the collection's profile.</td></tr>
       <tr><td><code>custom.pdp_specs</code></td><td>The Specs list. Use one line per row in the form <code>Height|4 ft</code>.</td></tr>
       <tr><td><code>custom.pdp_specs_subheading</code></td><td>Optional line under the Specs heading.</td></tr>
-      <tr><td><code>custom.dimensions</code></td><td>Dimensions used by product comparison.</td></tr>
       <tr><td><code>custom.recommendation_heading</code></td><td>Optional heading over related products.</td></tr>
       <tr><td><code>reviews.rating</code>, <code>reviews.rating_count</code></td><td>Filled by Okendo. Do not edit by hand.</td></tr>
     </tbody>
@@ -791,7 +790,12 @@ td code { white-space: nowrap; }
   </ul>
 
   <h2>Collection hero images</h2>
-  <p>Each main collection has its own hero image and crop in the collection template. Check desktop and phone after changing one.</p>
+  <p>The hero at the top of a collection page works two ways:</p>
+  <ul>
+    <li><strong>Main collections</strong> (Shop all, Ramps, Half Pipes, Quarter Pipes, Grind Boxes, Signature Series, Road Series, Launch Ramps, Manny Pad ramps, Skate Paint, Ramp Surfaces, Fingerboard ramps, Skateboard decks, Apparel, Furniture and the backyard and driveway setup collections) use approved desktop and phone hero images set in the theme code. Changing these needs a developer.</li>
+    <li><strong>Every other collection</strong> uses its own collection image from <span class="ui">Products → Collections → [collection] → Collection image</span>.</li>
+  </ul>
+  <p>Check desktop and phone after changing a hero.</p>
 </article>
 
 <!-- ======================= BLOGS & CONTENT ======================= -->
@@ -911,7 +915,7 @@ td code { white-space: nowrap; }
   <h2>Edit the hub cards</h2>
   <ol class="steps">
     <li>Theme editor → page selector → <span class="ui">Blogs → buyers-guide</span>.</li>
-    <li>Open the <span class="ui">Buyer guide hub</span> section. It has a hero, <strong>Decision</strong> blocks ("Choose your start") and <strong>Guide</strong> blocks (the reading sequence).</li>
+    <li>Open the <span class="ui">Buyer Guides hub</span> section. It has a hero, <strong>Decision</strong> blocks ("Choose your start") and <strong>Guide</strong> blocks (the reading sequence).</li>
     <li>Each block has a title, description, <span class="ui">Final article destination</span> and an optional <span class="ui">Published page while article is hidden</span>. If the final article is not published yet, the card links to the fallback page instead, so it never leads to a missing page.</li>
   </ol>
 
@@ -1220,11 +1224,12 @@ _our_work__Rentals &amp; Brand Activations</code></pre></div>
       <tr><td>Theme Scientist</td><td>A/B testing. Only needed while a test is running.</td><td>Theme Scientist app.</td></tr>
       <tr><td>Google &amp; YouTube / Customer events</td><td>Google Ads and Analytics tags.</td><td><span class="ui">Settings → Customer events</span> and the Google &amp; YouTube app (not the theme).</td></tr>
       <tr><td>Shopify</td><td>Checkout, Shop Pay, Shop Pay Installments, Affirm, product recommendations and search.</td><td>Shopify Admin settings.</td></tr>
+      <tr><td>Wishlist</td><td>The heart icon and the <a href="https://ocramps.com/pages/wishlist" target="_blank" rel="noopener">/pages/wishlist</a> page.</td><td>Built into the theme; no app. The "Swym Wishlist" groups left in Theme settings are not used.</td></tr>
     </tbody>
   </table></div>
 
   <h2>Cart</h2>
-  <p>The store uses Shopify's native cart page with built-in upgrades, recommendations, terms acceptance and a payment-terms note. The old Slide cart app is not used.</p>
+  <p>The store uses Shopify's native cart: a drawer that slides in from the side, plus the full cart page at /cart. Both have built-in upgrades, recommendations, terms acceptance and a payment-terms note. The old Slide cart app is not used.</p>
 
   <h2>Before switching an app embed on</h2>
   <p>Check this page first. Several embeds are off on purpose because the theme loads the same script in a faster way. Turning them on loads the script twice.</p>
@@ -1264,7 +1269,7 @@ _our_work__Rentals &amp; Brand Activations</code></pre></div>
   </ul>
 
   <h2>Structured data the theme adds</h2>
-  <p>Products publish price, availability, brand, review rating (from Okendo), shipping and return policy. The homepage publishes the OC Ramps organization with its official social profiles. You do not need an SEO app for these.</p>
+  <p>Product pages publish the price of the selected option, availability, brand and review rating (from Okendo). The store-wide organization data includes the official social profiles and the return policy link. You do not need an SEO app for these.</p>
 
   <h2>Redirects</h2>
   <p>Add redirects in <span class="ui">Content → Menus → URL redirects</span>. Redirect to the exact matching page, never to the homepage.</p>
