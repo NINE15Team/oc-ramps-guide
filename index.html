@@ -188,6 +188,8 @@ td code { white-space: nowrap; }
   border: 1px solid var(--line);
 }
 .ui { font-weight: 600; }
+.status { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--warn-line); color: var(--warn-line); background: var(--warn); margin-left: 6px; vertical-align: middle; white-space: nowrap; }
+.status.live { border-color: var(--tip-line); color: var(--tip-line); background: var(--tip); }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; margin: 20px 0; }
 .cards a {
@@ -389,6 +391,47 @@ td code { white-space: nowrap; }
   <div class="callout tip"><span class="t">Tip</span>Press <kbd>⌘K</kbd> (or <kbd>Ctrl K</kbd>, or <kbd>/</kbd>) anywhere to search these docs.</div>
 </article>
 
+<article class="doc" id="release-status" data-group="Start here">
+  <h1>What is live and what is waiting</h1>
+  <p class="lede">These docs describe the live theme (<strong>OC-Ramps/QA</strong>). Anything built and tested on the review theme but not yet published is marked <span class="status">Waiting</span> wherever it appears in these docs. Last checked November 10, 2026.</p>
+
+  <h2>Published to the live site</h2>
+  <p>Published November 10, 2026 and checked on <a href="https://ocramps.com/" target="_blank" rel="noopener">ocramps.com</a>.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>ID</th><th>Change</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>T-24</td><td>Ramp product pages show quote and delivery-guide links for orders outside the 48 contiguous U.S. states. See <a href="#products.shipping-outside-the-lower-48">Shipping outside the lower 48</a>.</td><td><span class="status live">Live</span></td></tr>
+      <tr><td>T-44</td><td>Shared product links and product data use the selected option's price.</td><td><span class="status live">Live</span></td></tr>
+      <tr><td>T-57</td><td>Product data names the brand once (Brand correction only).</td><td><span class="status live">Live</span></td></tr>
+      <tr><td>T-79</td><td>The free-shipping card shows only on eligible products. See <a href="#shipping-claim">Free-shipping claim</a>.</td><td><span class="status live">Live</span></td></tr>
+      <tr><td>T-96</td><td>The homepage's organization data links to the refund policy.</td><td><span class="status live">Live</span></td></tr>
+      <tr><td>T-111</td><td>Readable footer: white social icons, lighter legal links, normal-size FAQ answers on Brand Activations.</td><td><span class="status live">Live</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Waiting for approval to publish</h2>
+  <p>Built and tested on the review theme <strong>OC-Ramps/nine15/bug-fixes-v3</strong>. They are not on the live site until OC Ramps approves them and they are published.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>ID</th><th>Change</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>T-63</td><td>Brand Activations and Public Skateparks forms show a thank-you, keep answers after an error and allow a retry.</td><td><span class="status">Waiting</span></td></tr>
+      <tr><td>T-64</td><td>OC Ramps TV video viewer keeps keyboard focus inside and closes with Escape.</td><td><span class="status">Waiting</span></td></tr>
+      <tr><td>T-68</td><td>Skate Lessons wording, the trick/lesson and skateboard-plan templates, and no empty “Title” cards on the Skate Library hub.</td><td><span class="status">Waiting</span></td></tr>
+      <tr><td>T-77</td><td>DIY Plans and Skate Library each feature their own example article instead of the Glamis Oasis story. See <a href="#featured-articles">Featured articles on blog pages</a>.</td><td><span class="status">Waiting</span></td></tr>
+      <tr><td>T-80</td><td>Product comparison repaired. It stays switched off on the live site until it is approved to return.</td><td><span class="status">Waiting</span></td></tr>
+      <tr><td>T-81</td><td>Article action cards show only when they have both a button label and a link.</td><td><span class="status">Waiting</span></td></tr>
+      <tr><td>T-82</td><td>Service inquiry dates reset correctly; Ramp rental, Brand activation and Not sure inquiries are tracked.</td><td><span class="status">Waiting</span></td></tr>
+      <tr><td>T-85</td><td>Homepage slideshow holds while keyboard focus is on a slide link.</td><td><span class="status">Waiting</span></td></tr>
+      <tr><td>T-86</td><td>Brighter hero photos on Half Pipes and the Skate Library hub.</td><td><span class="status">Waiting</span></td></tr>
+      <tr><td>T-105</td><td>Four accessibility corrections (More menu, cart table caption, review text contrast, quiz landmark).</td><td><span class="status">Waiting</span></td></tr>
+      <tr><td>T-57</td><td>Product data leaves out SKUs that Google rejects (separate from the Brand correction above).</td><td><span class="status">Waiting</span></td></tr>
+      <tr><td>T-19</td><td>Loading-speed improvements on home, collection, product and guide pages.</td><td><span class="status">Waiting</span></td></tr>
+      <tr><td>T-27</td><td>The homepage's organization data lists the official social profiles.</td><td><span class="status">Waiting</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><span class="t">Keeping this page current</span>When a waiting change is published, move its row to the table above and remove its <span class="status">Waiting</span> label elsewhere in these docs.</div>
+</article>
+
 <article class="doc" id="quick-tasks" data-group="Start here">
   <h1>Which place should I edit?</h1>
   <p class="lede">Most content lives in Shopify Admin. Layout, colours and section order live in the theme editor. Use this table to go straight to the right screen.</p>
@@ -405,6 +448,7 @@ td code { white-space: nowrap; }
       <tr><td>Featured story on Our Work</td><td>Theme editor → <span class="ui">Blogs → gf-story-library → Story library</span></td><td>The matching Our Work tab</td></tr>
       <tr><td>Menu links</td><td><span class="ui">Content → Menus</span></td><td>Desktop mega menu and phone menu</td></tr>
       <tr><td>Standalone page</td><td><span class="ui">Online Store → Pages</span></td><td>Its template and menu link</td></tr>
+      <tr><td>A new page that is not public yet</td><td><span class="ui">Online Store → Pages</span>, set to Hidden, then <span class="ui">Preview</span></td><td>See <a href="#unpublished-page">Edit and preview an unpublished page</a></td></tr>
       <tr><td>Glossary term</td><td><span class="ui">Content → Metaobjects → Glossary</span></td><td>Glossary search and category tab</td></tr>
       <tr><td>Team rider profile</td><td><span class="ui">Content → Metaobjects → Team rider</span></td><td>The rider's page</td></tr>
       <tr><td>Redirect an old URL</td><td><span class="ui">Content → Menus → URL redirects</span> (or Admin search "redirects")</td><td>The old URL opens the new page</td></tr>
@@ -480,11 +524,11 @@ td code { white-space: nowrap; }
       <tr><td>DIY Plans hub</td><td><code>page.DIY-plans-hub</code></td><td><a href="https://ocramps.com/pages/diy-plans-hub" target="_blank" rel="noopener">/pages/diy-plans-hub</a></td></tr>
       <tr><td>DIY Plans blog (listings)</td><td><code>blog.DIY-plans</code></td><td><a href="https://ocramps.com/blogs/diy-plans" target="_blank" rel="noopener">/blogs/diy-plans</a></td></tr>
       <tr><td>DIY ramp plan article</td><td><code>article.diy-skate-ramp</code></td><td>Example (Hidden): “How to Build a 3-Foot Mini Ramp” – <code>/blogs/diy-plans/test-diy</code></td></tr>
-      <tr><td>DIY skateboard plan article</td><td><code>article.diy-skateboard</code></td><td>Example (Hidden): “How to Make a Skateboard Deck” – <code>/blogs/diy-plans/test-2-diy</code></td></tr>
+      <tr><td>DIY skateboard plan article <a class="status" href="#release-status">Waiting</a></td><td><code>article.diy-skateboard</code></td><td>Example (Hidden): “How to Make a Skateboard Deck” – <code>/blogs/diy-plans/test-2-diy</code></td></tr>
       <tr><td>Skate Library hub</td><td><code>page.skate-library-hub</code></td><td><a href="https://ocramps.com/pages/skate-library-hub" target="_blank" rel="noopener">/pages/skate-library-hub</a></td></tr>
       <tr><td>Skate Tricks blog (listing)</td><td><code>blog.skate-library</code></td><td><a href="https://ocramps.com/blogs/skate-library" target="_blank" rel="noopener">/blogs/skate-library</a></td></tr>
-      <tr><td>Skate Lessons blog (listing)</td><td><code>blog.skate-lessons</code></td><td><code>/blogs/skate-lessons?view=skate-lessons</code> (adds the coaching call-to-action)</td></tr>
-      <tr><td>Trick or lesson article</td><td><code>article.skate-learning</code></td><td>Examples (Hidden): “Blunt Fakie with Chris Massie” – <code>/blogs/skate-library/test-skate-library</code>; “Preparing for Your First Skate Lesson” – <code>/blogs/skate-lessons/preparing-for-your-first-skate-lesson</code></td></tr>
+      <tr><td>Skate Lessons blog (listing) <a class="status" href="#release-status">Waiting</a></td><td><code>blog.skate-lessons</code></td><td><code>/blogs/skate-lessons?view=skate-lessons</code> (adds the coaching call-to-action)</td></tr>
+      <tr><td>Trick or lesson article <a class="status" href="#release-status">Waiting</a></td><td><code>article.skate-learning</code></td><td>Examples (Hidden): “Blunt Fakie with Chris Massie” – <code>/blogs/skate-library/test-skate-library</code>; “Preparing for Your First Skate Lesson” – <code>/blogs/skate-lessons/preparing-for-your-first-skate-lesson</code></td></tr>
       <tr><td>Skate Glossary (index and search)</td><td><code>page.glossary</code></td><td><a href="https://ocramps.com/pages/skate-glossary" target="_blank" rel="noopener">/pages/skate-glossary</a></td></tr>
       <tr><td>Glossary term</td><td>Metaobject <code>glossary</code> (no separate page template)</td><td>Each term opens on the Glossary page with its definition, related links and FAQs, at its own link, e.g. <a href="https://ocramps.com/pages/skate-glossary#coping" target="_blank" rel="noopener">/pages/skate-glossary#coping</a></td></tr>
     </tbody>
@@ -664,6 +708,43 @@ td code { white-space: nowrap; }
 
   <h2>Remove or hide content</h2>
   <p>To hide a page temporarily, remove its menu link or set it to hidden. Before deleting, add a URL redirect so old links still work.</p>
+</article>
+
+<article class="doc" id="unpublished-page" data-group="Editing the site">
+  <h1>Edit and preview an unpublished page</h1>
+  <p class="lede">Build or change a page while it is hidden from customers, check it on desktop and phone, then make it visible. Nothing here changes the live site until the last step.</p>
+
+  <h2>Create the page hidden</h2>
+  <ol class="steps">
+    <li>Go to <span class="ui">Online Store → Pages</span> and click <span class="ui">Add page</span> (or open an existing hidden page).</li>
+    <li>Enter the <span class="ui">Title</span> and any <span class="ui">Content</span>.</li>
+    <li>In the right column, under <span class="ui">Visibility</span>, choose <span class="ui">Hidden</span>.</li>
+    <li>Under <span class="ui">Template</span>, pick the template for this kind of page from the <a href="#templates">Template map</a>.</li>
+    <li>Under <span class="ui">Search engine listing</span>, check the URL and description, then click <span class="ui">Save</span>.</li>
+  </ol>
+  <div class="callout"><span class="t">Hidden means</span>Customers who open the link get a “page not found” message, and the page is left out of search and the sitemap. Staff signed in to Shopify Admin can still preview it.</div>
+
+  <h2>Preview it</h2>
+  <ol class="steps">
+    <li>At the top of the page editor, click <span class="ui">Preview</span>. The page opens in a new tab for you only.</li>
+    <li>Check it on desktop, then narrow the window (or open the same preview on your phone while signed in) to check the phone layout.</li>
+    <li>Click every button and link on the page.</li>
+  </ol>
+
+  <h2>Edit its layout in the theme editor</h2>
+  <ol class="steps">
+    <li>In the page editor, click the eye icon next to <span class="ui">Template</span>. The theme editor opens on that template.</li>
+    <li>Edit sections and blocks, preview desktop and phone with the device icons, then click <span class="ui">Save</span>.</li>
+    <li>Go back to the page editor and click <span class="ui">Preview</span> again to see the result.</li>
+  </ol>
+  <div class="callout warn"><span class="t">Know the scope</span>Template changes apply to <strong>every</strong> page that uses the same template, including visible ones. If the page needs a different layout from the others, ask a developer for its own template, or practise on a duplicated theme first (<span class="ui">Online Store → Themes → ⋯ → Duplicate</span>, then <span class="ui">Customize</span> the copy). A duplicated theme never affects the live site until it is published.</div>
+
+  <h2>Make it live</h2>
+  <ol class="steps">
+    <li>In the page editor, under <span class="ui">Visibility</span>, choose <span class="ui">Visible</span> (or set a date to publish it later), then click <span class="ui">Save</span>.</li>
+    <li>Add a menu link if visitors need one (<span class="ui">Content → Menus</span>).</li>
+    <li>Open the page on <a href="https://ocramps.com/" target="_blank" rel="noopener">ocramps.com</a> in a private window to confirm customers can see it.</li>
+  </ol>
 </article>
 
 <!-- ======================= CATALOG ======================= -->
@@ -861,7 +942,7 @@ td code { white-space: nowrap; }
     <tbody>
       <tr><td><a href="https://ocramps.com/pages/diy-plans-hub" target="_blank" rel="noopener">DIY Plans hub</a></td><td><code>page.DIY-plans-hub</code></td><td>Six category cards with live counts</td></tr>
       <tr><td>DIY Plans blog</td><td><code>blog.DIY-plans</code></td><td>Tagged listings, for example <code>/blogs/diy-plans/tagged/mini_ramp__plan</code></td></tr>
-      <tr><td>Plan article</td><td><code>article.diy-skate-ramp</code> or <code>article.diy-skateboard</code></td><td>The plan itself</td></tr>
+      <tr><td>Plan article</td><td><code>article.diy-skate-ramp</code> or <code>article.diy-skateboard</code> <a class="status" href="#release-status">Waiting</a></td><td>The plan itself</td></tr>
     </tbody>
   </table></div>
 
@@ -948,7 +1029,7 @@ td code { white-space: nowrap; }
     <tbody>
       <tr><td><a href="https://ocramps.com/pages/skate-library-hub" target="_blank" rel="noopener">Skate Library hub</a></td><td><code>page.skate-library-hub</code></td></tr>
       <tr><td><a href="https://ocramps.com/blogs/skate-library" target="_blank" rel="noopener">Skate Tricks</a> and <a href="https://ocramps.com/blogs/skate-lessons" target="_blank" rel="noopener">Skate Lessons</a></td><td><code>blog.skate-library</code></td></tr>
-      <tr><td>Trick or lesson article</td><td><code>article.skate-learning</code></td></tr>
+      <tr><td>Trick or lesson article <a class="status" href="#release-status">Waiting</a></td><td><code>article.skate-learning</code></td></tr>
     </tbody>
   </table></div>
 
@@ -1098,7 +1179,7 @@ td code { white-space: nowrap; }
 
   <h2>Publish a trick or lesson</h2>
   <ol class="steps">
-    <li>Add a blog post to <strong>Skate Library</strong> (or <strong>Skate Lessons</strong>). Template: <code>article.skate-learning</code>.</li>
+    <li>Add a blog post to <strong>Skate Library</strong> (or <strong>Skate Lessons</strong>). Template: <code>article.skate-learning</code> <a class="status" href="#release-status">Waiting</a>.</li>
     <li>Add one tab tag, for example <code>Grinds</code>.</li>
     <li>Set <code>custom.difficulty_metafield</code> and, optionally, <code>custom.category_metafield</code> in the article's metafields.</li>
     <li>Publish and check the tab.</li>
@@ -1114,7 +1195,7 @@ td code { white-space: nowrap; }
 
   <h2>Publish a DIY plan</h2>
   <ol class="steps">
-    <li>Add a blog post to <strong>DIY Plans</strong>. Template: <code>article.diy-skate-ramp</code> (or <code>article.diy-skateboard</code>).</li>
+    <li>Add a blog post to <strong>DIY Plans</strong>. Template: <code>article.diy-skate-ramp</code> (or <code>article.diy-skateboard</code> <a class="status" href="#release-status">Waiting</a>).</li>
     <li>Add one category tag, for example <code>mini_ramp__plan</code>.</li>
     <li>Publish, then check the DIY Plans hub count went up.</li>
   </ol>
@@ -1137,7 +1218,15 @@ td code { white-space: nowrap; }
 
   <h2>It is not driven by tags</h2>
   <p>Adding a tag never changes the featured article. Publishing a newer article never changes it either. It stays on the picked article until someone changes it in the theme editor.</p>
-  <div class="callout warn"><span class="t">Check this</span>At the time of writing, the Featured section on both pages points to the same Our Work story ("Glamis Oasis desert skate ramp"). Pick a relevant article for each page.</div>
+  <h2>Which article is featured</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Blog page</th><th>Live site today</th><th>After T-77 is published <a class="status" href="#release-status">Waiting</a></th></tr></thead>
+    <tbody>
+      <tr><td>DIY Plans</td><td>Our Work story “Glamis Oasis desert skate ramp”</td><td>DIY example article “How to Build a 3-Foot Mini Ramp” (<code>diy-plans/test-diy</code>)</td></tr>
+      <tr><td>Skate Library</td><td>Our Work story “Glamis Oasis desert skate ramp”</td><td>Skate Library example article “Blunt Fakie with Chris Massie” (<code>skate-library/test-skate-library</code>)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="t">Check this</span>On the live site both pages still feature the same Glamis Oasis story (checked November 10, 2026). Until T-77 is published, you can pick a relevant article for each page with the steps below. Both example articles are Hidden, so publish them (or pick another published article) before featuring them.</div>
 
   <h2>Change the featured article</h2>
   <ol class="steps">
@@ -1271,7 +1360,7 @@ _our_work__Rentals &amp; Brand Activations</code></pre></div>
   </ul>
 
   <h2>Structured data the theme adds</h2>
-  <p>Product pages publish the price of the selected option, availability, brand and review rating (from Okendo). The store-wide organization data includes the official social profiles and the return policy link. You do not need an SEO app for these.</p>
+  <p>Product pages publish the price of the selected option, availability, brand and review rating (from Okendo). The store-wide organization data includes the return policy link. The official social profiles are added there too once T-27 is published <a class="status" href="#release-status">Waiting</a>. You do not need an SEO app for these.</p>
 
   <h2>Redirects</h2>
   <p>Add redirects in <span class="ui">Content → Menus → URL redirects</span>. Redirect to the exact matching page, never to the homepage.</p>
@@ -1383,6 +1472,34 @@ _our_work__Rentals &amp; Brand Activations</code></pre></div>
 
 <!-- ======================= HANDOFF ======================= -->
 
+<article class="doc" id="handoff" data-group="Handoff">
+  <h1>Handoff materials</h1>
+  <p class="lede">Where to find the theme code, design sources and project documents, and how to keep your own copies after the project ends.</p>
+
+  <h2>Theme code</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Source</th><th>What it is</th><th>Link / how to get it</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub repository</td><td>The full theme source and its history. The <code>QA</code> branch is connected to the live theme.</td><td><a href="https://github.com/NINE15Team/OC-Ramps" target="_blank" rel="noopener">NINE15Team/OC-Ramps</a> (private)</td></tr>
+      <tr><td>Theme download</td><td>A complete copy of the live theme's files and settings, which OC Ramps can keep without GitHub.</td><td><span class="ui">Online Store → Themes</span> → on <strong>OC-Ramps/QA</strong> click <span class="ui">⋯ → Download theme file</span>. Shopify emails a .zip link to the signed-in staff account.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><span class="t">GitHub access</span>The repository is private, which is why it shows “404 Not Found” to accounts that have not been added. To receive access or take over ownership, send Nine15 the <strong>GitHub username</strong> (or GitHub organization) the repository should be transferred to. After a transfer, check in <span class="ui">Online Store → Themes</span> that the live theme is still connected to the repository's <code>QA</code> branch, and reconnect it if Shopify asks.</div>
+
+  <h2>Design sources</h2>
+  <p>The Figma file and the wireframe directory are listed in <a href="#style-guide.design-sources">Design &amp; style guide → Design sources</a>.</p>
+
+  <h2>Project documents</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Document</th><th>Link</th></tr></thead>
+    <tbody>
+      <tr><td>Competitive analysis</td><td><a href="https://nine15team.com/brands/oc-ramps/oc-ramps-competitive-analysis.html" target="_blank" rel="noopener">Open</a></td></tr>
+      <tr><td>Test evidence, November 6, 2026 (speed reports, shipping message, homepage data, financing, structured data, photo overlays, accessibility checks)</td><td><a href="https://docs.google.com/document/d/1xLoWPGs53XSjJxQFCcK4Xva6tZ4adCly6fXBOdvxCCo/edit" target="_blank" rel="noopener">Open</a></td></tr>
+      <tr><td>Final repairs and retests, November 10, 2026 (each repair with proof, speed results, and the changes published to the live site)</td><td><a href="https://docs.google.com/document/d/1rqsXy0A7CWGLuH5Bs1-_ZaYl1psDPD_dPow1IYwHRo4/edit" target="_blank" rel="noopener">Open</a></td></tr>
+    </tbody>
+  </table></div>
+  <p>For what is live and what is still waiting for approval, see <a href="#release-status">What is live and what is waiting</a>.</p>
+</article>
 
 
 <article class="doc" id="style-guide" data-group="Handoff">
